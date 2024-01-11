@@ -10,15 +10,7 @@ public class Engine {
 		final int MAX_COLORES_SEQ = 12;
 		tColores [] secuenciaColores = new tColores[MAX_COLORES_SEQ];
 		char _color = scanner.next().charAt(MAX_COLORES_SEQ);
-		
-	
-	
-		
-		
-		
-		
-		
-		
+			
 	}
 	/**
 	 * Este método relaciona el caracter que introduce el usuario con un color incluido en el enum tColores
