@@ -33,36 +33,36 @@ public class Engine {
 	 */
 
 	public tColores charToColor(char _color) {
-		tColores elegir = null;
+		tColores elegir1 = null;
 		switch (_color) {
 		case 'a':
-			elegir = tColores.AZUL;
+			elegir1 = tColores.AZUL;
 			break;
 		case 'A':
-			elegir = tColores.AZUL;
+			elegir1 = tColores.AZUL;
 			break;
 		case 'r':
-			elegir = tColores.ROJO;
+			elegir1 = tColores.ROJO;
 			break;
 		case 'R':
-			elegir = tColores.ROJO;
+			elegir1 = tColores.ROJO;
 			break;
 		case 'v':
-			elegir = tColores.VERDE;
+			elegir1 = tColores.VERDE;
 			break;
 		case 'V':
-			elegir = tColores.VERDE;
+			elegir1 = tColores.VERDE;
 			break;
 		case 'd':
-			elegir = tColores.DORADO;
+			elegir1 = tColores.DORADO;
 			break;
 		case 'D':
-			elegir = tColores.DORADO;
+			elegir1 = tColores.DORADO;
 			break;
 		default:
 			System.out.println("Caracter incorrecto, no se corresponde con ningún color.");
 		}
-		return elegir;
+		return elegir1;
 	}
 
 	/**
@@ -73,24 +73,24 @@ public class Engine {
 	 * @return
 	 */
 	public tColores intToColor(int _numero) {
-		tColores elegir = null;
+		tColores elegir2 = null;
 		switch (_numero) {
 		case 0:
-			elegir = tColores.ROJO;
+			elegir2 = tColores.ROJO;
 			break;
 		case 1:
-			elegir = tColores.VERDE;
+			elegir2 = tColores.VERDE;
 			break;
 		case 2:
-			elegir = tColores.AZUL;
+			elegir2 = tColores.AZUL;
 			break;
 		case 3:
-			elegir = tColores.DORADO;
+			elegir2 = tColores.DORADO;
 			break;
 		default:
 			System.out.println("Número incorrecto, no se corresponde con ningún color.");
 		}
-		return elegir;
+		return elegir2;
 	}
 	
 	/**
@@ -101,13 +101,17 @@ public class Engine {
 	public void generarSecuencia(int _numColores) {
 		for(int i = 0; i < secuenciaColores.length; i++) {
 			secuenciaColores[i] = intToColor(aleatorio);
-			System.out.print(secuenciaColores[i]);
 		}
 		
 
 	}
 	
 	public boolean comprobarColor(int _index, tColores _color) {
+		boolean comparar = false;
+		if(_color == secuenciaColores[_index]) {
+			
+		}
+		return comparar;
 		
 		
 	}
