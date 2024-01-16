@@ -1,5 +1,10 @@
 package main;
 
+/**
+ * Clase Jugador
+ * @author elena
+ */
+
 public class Jugador {
 	/**
 	 * Atributos
@@ -26,7 +31,7 @@ public class Jugador {
 		this.nombre = nombre;
 	}
 	public void setPuntuacion() {
-		this.puntuacion = puntuacion;
+		this.puntuacion = 0;
 	}
 
 }
