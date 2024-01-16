@@ -21,8 +21,8 @@ public class Engine {
 	private tColores[] secuenciaColores = new tColores[MAX_COLORES_SEQ];
 	char _color = scanner.next().charAt(MAX_COLORES_SEQ);
 	int _numColores = 4;
-	int aleatorio = (int) (Math.random()*4);
-	
+	int aleatorio = (int) (Math.random() * 4);
+	int _index = 0;
 
 	/**
 	 * Este método relaciona el caracter que introduce el usuario con un color
@@ -31,7 +31,6 @@ public class Engine {
 	 * @param _color
 	 * @return
 	 */
-
 	public tColores charToColor(char _color) {
 		tColores elegir1 = null;
 		switch (_color) {
@@ -92,28 +91,39 @@ public class Engine {
 		}
 		return elegir2;
 	}
-	
+
 	/**
 	 * Método que genera el array de tipo tColores
+	 * 
 	 * @param _numColores
 	 */
-
 	public void generarSecuencia(int _numColores) {
-		for(int i = 0; i < secuenciaColores.length; i++) {
+		for (int i = 0; i < secuenciaColores.length; i++) {
 			secuenciaColores[i] = intToColor(aleatorio);
 		}
-		
 
 	}
-	
+
+	/**
+	 * Método que compara si el color que ha puesto el usuario es el mismo que pone
+	 * el programa
+	 * 
+	 * @param _index
+	 * @param _color
+	 * @return
+	 */
 	public boolean comprobarColor(int _index, tColores _color) {
 		boolean comparar = false;
-		if(_color == secuenciaColores[_index]) {
-			
+		if (_color == secuenciaColores[_index]) {
+			comparar = false;
+			_index++;
+
+		} else {
+			comparar = true;
+			System.out.print("Fallaste, ese no era el color");
 		}
 		return comparar;
-		
-		
+
 	}
 
 }
