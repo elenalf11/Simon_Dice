@@ -114,16 +114,46 @@ public class Engine {
 	 */
 	public boolean comprobarColor(int _index, tColores _color) {
 		boolean comparar = false;
+		
 		if (_color == secuenciaColores[_index]) {
 			comparar = false;
 			_index++;
 
 		} else {
 			comparar = true;
-			System.out.print("Fallaste, ese no era el color");
+			System.out.println("Fallaste, ese no era el color");
 		}
 		return comparar;
 
+	}
+	
+	public void mostrarSecuencia(int _numero) {
+		
+	}
+	
+	public void start() {
+		
+		System.out.println("¡Bienvenido a Simón Dice!s");
+		System.out.println("¿Cuál es su nombre?: ");
+		String nombre = scanner.next();
+		System.out.println("Hola " + nombre + " ,pulse ENTER para empezar a jugar");
+		int num = scanner.nextInt();
+		do {
+			switch(num){
+				case 1:
+					System.out.println("Empezar a jugar");
+					break;
+				case 2:
+					System.out.println("Salir");
+					break;
+				case 3:
+					System.out.println("Consultar perfil");
+					break;
+			}
+		}
+		while(num != 0); 
+			
+		
 	}
 
 }
