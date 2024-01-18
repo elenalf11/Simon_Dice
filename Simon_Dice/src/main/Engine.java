@@ -17,12 +17,8 @@ public class Engine {
 
 	Scanner scanner = new Scanner(System.in);
 	Random rand = new Random();
-	final private int MAX_COLORES_SEQ = 12;
-	private tColores[] secuenciaColores = new tColores[MAX_COLORES_SEQ];
-	char _color = scanner.next().charAt(MAX_COLORES_SEQ);
-	int _numColores = 4;
-	int aleatorio = (int) (Math.random() * 4);
-	int _index = 0;
+	final int MAX_COLORES_SEQ = 12;
+	tColores[] secuenciaColores = new tColores[MAX_COLORES_SEQ];
 
 	/**
 	 * Este método relaciona el caracter que introduce el usuario con un color
@@ -33,29 +29,18 @@ public class Engine {
 	 */
 	public tColores charToColor(char _color) {
 		tColores elegir1 = null;
+		char letra = Character.toLowerCase(_color);
 		switch (_color) {
 		case 'a':
-			elegir1 = tColores.AZUL;
-			break;
-		case 'A':
 			elegir1 = tColores.AZUL;
 			break;
 		case 'r':
 			elegir1 = tColores.ROJO;
 			break;
-		case 'R':
-			elegir1 = tColores.ROJO;
-			break;
 		case 'v':
 			elegir1 = tColores.VERDE;
 			break;
-		case 'V':
-			elegir1 = tColores.VERDE;
-			break;
 		case 'd':
-			elegir1 = tColores.DORADO;
-			break;
-		case 'D':
 			elegir1 = tColores.DORADO;
 			break;
 		default:
@@ -86,8 +71,6 @@ public class Engine {
 		case 3:
 			elegir2 = tColores.DORADO;
 			break;
-		default:
-			System.out.println("Número incorrecto, no se corresponde con ningún color.");
 		}
 		return elegir2;
 	}
@@ -98,7 +81,10 @@ public class Engine {
 	 * @param _numColores
 	 */
 	public void generarSecuencia(int _numColores) {
+		int longitud = MAX_COLORES_SEQ - 1;
 		for (int i = 0; i < secuenciaColores.length; i++) {
+			Random random = new Random();
+			int aleatorio = random.nextInt(0, 4);
 			secuenciaColores[i] = intToColor(aleatorio);
 		}
 
@@ -113,47 +99,68 @@ public class Engine {
 	 * @return
 	 */
 	public boolean comprobarColor(int _index, tColores _color) {
-		boolean comparar = false;
-		
-		if (_color == secuenciaColores[_index]) {
-			comparar = false;
-			_index++;
-
-		} else {
-			comparar = true;
-			System.out.println("Fallaste, ese no era el color");
-		}
-		return comparar;
+		return secuenciaColores[_index] == _color;
 
 	}
-	
+
 	public void mostrarSecuencia(int _numero) {
-		
-	}
-	
-	public void start() {
-		
-		System.out.println("¡Bienvenido a Simón Dice!s");
-		System.out.println("¿Cuál es su nombre?: ");
-		String nombre = scanner.next();
-		System.out.println("Hola " + nombre + " ,pulse ENTER para empezar a jugar");
-		int num = scanner.nextInt();
-		do {
-			switch(num){
-				case 1:
-					System.out.println("Empezar a jugar");
-					break;
-				case 2:
-					System.out.println("Salir");
-					break;
-				case 3:
-					System.out.println("Consultar perfil");
-					break;
-			}
+		for (int i = 0; i < _numero; i++) {
+			System.out.print(secuenciaColores[i] + " ");
 		}
-		while(num != 0); 
-			
-		
+
 	}
 
+	public void play() {
+		System.out.println("[1]--- Jugar");
+		System.out.println("[2]--- Salir");
+		Scanner scanner = new Scanner(System.in);
+		int menu = scanner.nextInt();
+
+		if (menu == 2) {
+			System.out.println("Saliendo del sistema...");
+		} else if (menu == 1) {
+			System.out.println("¡Bienvenido a Simón Dice!");
+			System.out.println("¿Cuál es su nombre?");
+			String nombre = scanner.next();
+			System.out.println("Hola " + nombre + " , ¿preparad@ para comenzar a jugar?");
+
+			generarSecuencia(12);
+
+			for (int i = 0; i < MAX_COLORES_SEQ; i++) {
+				System.out.println("Pulse ENTER cuando esté listo... ¡SUERTE!");
+				new Scanner(System.in).nextLine();
+
+				for (int j = 0; j < 50; j++) {
+					System.out.println();
+				}
+				mostrarSecuencia(3 + i);
+				System.out.println();
+				int secuencia = i + 1;
+				
+				System.out.println("Memorice la secuencia, y cuando esté listo pulse ENTER...");
+				new Scanner(System.in).nextLine();
+				
+				for(int j = 0; j < 50; j++) {
+					System.out.println();
+				}
+				
+				System.out.println("Escriba la secuencia anterior en el orden correcto, por favor");
+				for(int k = 0; k < 3 + i; k++) {
+					System.out.println("¿Qué color había en la posición " + (k + 1) + " = ");
+					char tuchar = scanner.next().charAt(0);
+					tColores char_elegido = charToColor(tuchar);
+					
+					if(comprobarColor(k, char_elegido)) {
+						System.out.println("¡Correcto! Acertaste la secuencia");
+					}else {
+						System.out.println("¡Incorrecto! Lo siento, la suerte no te acompañó :`(");
+					}
+				}
+			}
+		}else {
+			System.out.println("Esa opción no estaba en la lista, lee bien");
+		}
+		scanner.close();
+	}
+	
 }
