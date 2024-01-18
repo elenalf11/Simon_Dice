@@ -21,25 +21,38 @@ public class Engine {
 
 	/**
 	 * Este método relaciona el caracter que introduce el usuario con un color
-	 * incluido en el enum tColores
+	 * incluido en el enum tColores.
 	 * 
-	 * @param _color
-	 * @return
+	 * @param _color Este parámetro representa el caracter del color introducido por
+	 *               el usuario.
+	 * @return El método retorna el char introducido convertido en el tipo tColores.
+	 *         (convertirlo en un color del enum)
 	 */
 	public tColores charToColor(char _color) {
 		tColores elegir1 = null;
-		char letra = Character.toLowerCase(_color);
 		switch (_color) {
 		case 'a':
+			elegir1 = tColores.AZUL;
+			break;
+		case 'A':
 			elegir1 = tColores.AZUL;
 			break;
 		case 'r':
 			elegir1 = tColores.ROJO;
 			break;
+		case 'R':
+			elegir1 = tColores.ROJO;
+			break;
 		case 'v':
 			elegir1 = tColores.VERDE;
 			break;
+		case 'V':
+			elegir1 = tColores.VERDE;
+			break;
 		case 'd':
+			elegir1 = tColores.DORADO;
+			break;
+		case 'D':
 			elegir1 = tColores.DORADO;
 			break;
 		default:
@@ -50,10 +63,11 @@ public class Engine {
 
 	/**
 	 * Método que relaciona un número(posición del enum tColores) con un color
-	 * incluido en el enum de tColores
+	 * incluido en el enum de tColores.
 	 * 
-	 * @param _numero
-	 * @return
+	 * @param _numero Este parámetro representa un número entero.
+	 * @return El método retorna un número entero convertido en un tipo tColores. (se
+	 *         convierte en un color del enum)
 	 */
 	public tColores intToColor(int _numero) {
 		tColores elegir2 = null;
@@ -75,7 +89,7 @@ public class Engine {
 	}
 
 	/**
-	 * Método que genera el array de tipo tColores
+	 * Método que genera el array de tipo tColores.
 	 * 
 	 * @param _numColores
 	 */
@@ -107,7 +121,7 @@ public class Engine {
 	 * @param _numero
 	 */
 	public void mostrarSecuencia(int _numero) {
-		for (int i = 0; i < _numero; i++) {
+		for (int i = 0; i < secuenciaColores.length; i++) {
 			System.out.print(secuenciaColores[i] + " ");
 		}
 
