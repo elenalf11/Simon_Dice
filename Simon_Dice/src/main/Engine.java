@@ -134,25 +134,25 @@ public class Engine {
 				String nombre = scanner.next();
 				System.out.println("Hola " + nombre + " , ¿preparad@ para comenzar a jugar?");
 				generarSecuencia(12);
-			} 
+			}
 			while (fallo == false) {
-			for (int i = 0; i < MAX_COLORES_SEQ; i++) {
-				System.out.println("Pulse ENTER cuando esté listo... ¡SUERTE!");
-				new Scanner(System.in).nextLine();
+				for (int i = 0; i < MAX_COLORES_SEQ; i++) {
+					System.out.println("Pulse ENTER cuando esté listo... ¡SUERTE!");
+					new Scanner(System.in).nextLine();
 
-				for (int j = 0; j < 50; j++) {
+					for (int j = 0; j < 50; j++) {
+						System.out.println();
+					}
+					mostrarSecuencia(3 + i);
 					System.out.println();
-				}
-				mostrarSecuencia(3 + i);
-				System.out.println();
 
-				System.out.println("Memorice la secuencia, y cuando esté listo pulse ENTER...");
-				new Scanner(System.in).nextLine();
+					System.out.println("Memorice la secuencia, y cuando esté listo pulse ENTER...");
+					new Scanner(System.in).nextLine();
 
-				for (int j = 0; j < 50; j++) {
-					System.out.println();
-				}
-				
+					for (int j = 0; j < 50; j++) {
+						System.out.println();
+					}
+
 					System.out.println("Escriba la secuencia anterior en el orden correcto, por favor");
 					for (int k = 0; k < 3 + i; k++) {
 						System.out.println("¿Qué color había en la posición " + (k + 1) + " = ");
