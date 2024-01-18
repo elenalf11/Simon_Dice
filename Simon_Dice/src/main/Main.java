@@ -16,8 +16,4 @@ public class Main {
 	}
 
 }
-/**
- * char _color = scanner.next().charAt(MAX_COLORES_SEQ);
-int _index = 0;
- */
 

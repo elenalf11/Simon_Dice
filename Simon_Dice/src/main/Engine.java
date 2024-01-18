@@ -123,17 +123,19 @@ public class Engine {
 		System.out.println("[2]--- Salir");
 		Scanner scanner = new Scanner(System.in);
 		int menu = scanner.nextInt();
+		boolean fallo = false;
 
-		if (menu == 2) {
-			System.out.println("Saliendo del sistema...");
-		} else if (menu == 1) {
-			System.out.println("¡Bienvenido a Simón Dice!");
-			System.out.println("¿Cuál es su nombre?");
-			String nombre = scanner.next();
-			System.out.println("Hola " + nombre + " , ¿preparad@ para comenzar a jugar?");
-
-			generarSecuencia(12);
-
+		do {
+			if (menu == 2) {
+				System.out.println("Saliendo del sistema...");
+			} else if (menu == 1) {
+				System.out.println("¡Bienvenido a Simón Dice!");
+				System.out.println("¿Cuál es su nombre?");
+				String nombre = scanner.next();
+				System.out.println("Hola " + nombre + " , ¿preparad@ para comenzar a jugar?");
+				generarSecuencia(12);
+			} 
+			while (fallo == false) {
 			for (int i = 0; i < MAX_COLORES_SEQ; i++) {
 				System.out.println("Pulse ENTER cuando esté listo... ¡SUERTE!");
 				new Scanner(System.in).nextLine();
@@ -150,23 +152,28 @@ public class Engine {
 				for (int j = 0; j < 50; j++) {
 					System.out.println();
 				}
+				
+					System.out.println("Escriba la secuencia anterior en el orden correcto, por favor");
+					for (int k = 0; k < 3 + i; k++) {
+						System.out.println("¿Qué color había en la posición " + (k + 1) + " = ");
+						char tu_char = scanner.next().charAt(0);
+						tColores char_elegido = charToColor(tu_char);
 
-				System.out.println("Escriba la secuencia anterior en el orden correcto, por favor");
-				for (int k = 0; k < 3 + i; k++) {
-					System.out.println("¿Qué color había en la posición " + (k + 1) + " = ");
-					char tu_char = scanner.next().charAt(0);
-					tColores char_elegido = charToColor(tu_char);
-
-					if (comprobarColor(k, char_elegido)) {
-						System.out.println("¡Correcto! Acertaste la secuencia");
-					} else {
-						System.out.println("¡Incorrecto! Lo siento, la suerte no te acompañó :`(");
+						if (comprobarColor(k, char_elegido)) {
+							System.out.println("¡Correcto! Acertaste la secuencia");
+							fallo = false;
+						} else {
+							System.out.println("¡Incorrecto! Lo siento, la suerte no te acompañó");
+							fallo = true;
+						}
 					}
 				}
 			}
-		} else {
-			System.out.println("Esa opción no estaba en la lista, lee bien");
+		} while (fallo == false);
+		{
+
 		}
+
 		scanner.close();
 	}
 
