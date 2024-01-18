@@ -16,7 +16,6 @@ public class Engine {
 	}
 
 	Scanner scanner = new Scanner(System.in);
-	Random rand = new Random();
 	final int MAX_COLORES_SEQ = 12;
 	tColores[] secuenciaColores = new tColores[MAX_COLORES_SEQ];
 
@@ -81,7 +80,6 @@ public class Engine {
 	 * @param _numColores
 	 */
 	public void generarSecuencia(int _numColores) {
-		int longitud = MAX_COLORES_SEQ - 1;
 		for (int i = 0; i < secuenciaColores.length; i++) {
 			Random random = new Random();
 			int aleatorio = random.nextInt(0, 4);
@@ -103,6 +101,11 @@ public class Engine {
 
 	}
 
+	/**
+	 * Método que imprime la secuencia creada en el método generarSecuencia
+	 * 
+	 * @param _numero
+	 */
 	public void mostrarSecuencia(int _numero) {
 		for (int i = 0; i < _numero; i++) {
 			System.out.print(secuenciaColores[i] + " ");
@@ -110,6 +113,11 @@ public class Engine {
 
 	}
 
+	/**
+	 * Método que controla todo el flujo del juego, empezando por el control del
+	 * menú, limitar la impresión de la secuencia de colores y el comparador para
+	 * saber si se escribe correctamente la secuencia.
+	 */
 	public void play() {
 		System.out.println("[1]--- Jugar");
 		System.out.println("[2]--- Salir");
@@ -135,32 +143,31 @@ public class Engine {
 				}
 				mostrarSecuencia(3 + i);
 				System.out.println();
-				int secuencia = i + 1;
-				
+
 				System.out.println("Memorice la secuencia, y cuando esté listo pulse ENTER...");
 				new Scanner(System.in).nextLine();
-				
-				for(int j = 0; j < 50; j++) {
+
+				for (int j = 0; j < 50; j++) {
 					System.out.println();
 				}
-				
+
 				System.out.println("Escriba la secuencia anterior en el orden correcto, por favor");
-				for(int k = 0; k < 3 + i; k++) {
+				for (int k = 0; k < 3 + i; k++) {
 					System.out.println("¿Qué color había en la posición " + (k + 1) + " = ");
-					char tuchar = scanner.next().charAt(0);
-					tColores char_elegido = charToColor(tuchar);
-					
-					if(comprobarColor(k, char_elegido)) {
+					char tu_char = scanner.next().charAt(0);
+					tColores char_elegido = charToColor(tu_char);
+
+					if (comprobarColor(k, char_elegido)) {
 						System.out.println("¡Correcto! Acertaste la secuencia");
-					}else {
+					} else {
 						System.out.println("¡Incorrecto! Lo siento, la suerte no te acompañó :`(");
 					}
 				}
 			}
-		}else {
+		} else {
 			System.out.println("Esa opción no estaba en la lista, lee bien");
 		}
 		scanner.close();
 	}
-	
+
 }
