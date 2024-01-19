@@ -123,7 +123,7 @@ public class Engine {
 	 * @param _numero numero de la secuencia actual.
 	 */
 	public void mostrarSecuencia(int _numero) {
-		for (int i = 0; i < secuenciaColores.length; i++) {
+		for (int i = 0; i < _numero; i++) {
 			System.out.print(secuenciaColores[i] + " ");
 		}
 
@@ -139,57 +139,54 @@ public class Engine {
 		System.out.println("[2]--- Salir");
 		Scanner scanner = new Scanner(System.in);
 		int menu = scanner.nextInt();
-		boolean fallo = false;
+		
 
-		do {
-			if (menu == 2) {
-				System.out.println("Saliendo del sistema...");
-			} else if (menu == 1) {
-				System.out.println("¡Bienvenido a Simón Dice!");
-				System.out.println("¿Cuál es su nombre?");
-				String nombre = scanner.next();
-				System.out.println("Hola " + nombre + " , ¿preparad@ para comenzar a jugar?");
-				generarSecuencia(12);
-			}
+		if (menu == 2) {
+			System.out.println("Saliendo del sistema...");
+			System.exit(0);
+		} else if (menu == 1) {
+			System.out.println("¡Bienvenido a Simón Dice!");
+			System.out.println("¿Cuál es su nombre?");
+			String nombre = scanner.next();
+			System.out.println("Hola " + nombre + " , ¿preparad@ para comenzar a jugar?");
 
-			for (int i = 0; i < MAX_COLORES_SEQ; i++) {
-				System.out.println("Pulse ENTER cuando esté listo... ¡SUERTE!");
-				new Scanner(System.in).nextLine();
-
-				for (int j = 0; j < 50; j++) {
-					System.out.println();
-				}
-				mostrarSecuencia(3 + i);
-				System.out.println();
-
-				System.out.println("Memorice la secuencia, y cuando esté listo pulse ENTER...");
-				new Scanner(System.in).nextLine();
-
-				for (int j = 0; j < 50; j++) {
-					System.out.println();
-				}
-
-				System.out.println("Escriba la secuencia anterior en el orden correcto, por favor");
-				while (fallo == false) {
-					for (int k = 0; k < 3 + i; k++) {
-						System.out.println("¿Qué color había en la posición " + (k + 1) + " = ");
-						char tu_char = scanner.next().charAt(0);
-						tColores char_elegido = charToColor(tu_char);
-
-						if (comprobarColor(k, char_elegido)) {
-							System.out.println("¡Correcto! Acertaste la secuencia");
-							fallo = false;
-						} else {
-							System.out.println("¡Incorrecto! Lo siento, la suerte no te acompañó");
-							fallo = true;
-						}
-					}
-				}
-			}
-		} while (fallo == false);
-		{
-			System.out.println("Has perdido, Lo siento");
+			generarSecuencia(12);
 		}
+
+		for (int i = 0; i < MAX_COLORES_SEQ; i++) {
+			System.out.println("Pulse ENTER cuando esté listo... ¡SUERTE!");
+			new Scanner(System.in).nextLine();
+
+			for (int j = 0; j < 50; j++) {
+				System.out.println();
+			}
+			mostrarSecuencia(3 + i);
+			System.out.println();
+
+			System.out.println("Memorice la secuencia, y cuando esté listo pulse ENTER...");
+			new Scanner(System.in).nextLine();
+
+			for (int j = 0; j < 50; j++) {
+				System.out.println();
+			}
+
+			System.out.println("Escriba la secuencia anterior en el orden correcto, por favor");
+			for (int m = 0; m < 3 + i; m++) {
+				System.out.println("¿Qué color había en la posición " + (m + 1) + " = ");
+				char tu_char = scanner.next().charAt(0);
+				tColores char_elegido = charToColor(tu_char);
+
+				if (comprobarColor(m, char_elegido)) {
+					System.out.println("¡Correcto! Acertaste la secuencia");
+				} else {
+					System.out.println("¡Has perdido! la suerte no te acompañó");
+					System.exit(0);
+				}
+			}
+
+		}
+
+		System.out.println("¡Enhorabuena, has ganado!");
 
 		scanner.close();
 	}
