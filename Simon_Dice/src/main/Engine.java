@@ -20,12 +20,12 @@ public class Engine {
 	tColores[] secuenciaColores = new tColores[MAX_COLORES_SEQ];
 
 	/**
-	 * Este método relaciona el caracter que introduce el usuario con un color
+	 * Este metodo relaciona el caracter que introduce el usuario con un color
 	 * incluido en el enum tColores.
 	 * 
-	 * @param _color Este parámetro representa el caracter del color introducido por
+	 * @param _color Este parametro representa el caracter del color introducido por
 	 *               el usuario.
-	 * @return El método retorna el char introducido convertido en el tipo tColores.
+	 * @return El metodo retorna el char introducido convertido en el tipo tColores.
 	 *         (convertirlo en un color del enum)
 	 */
 	public tColores charToColor(char _color) {
@@ -62,11 +62,11 @@ public class Engine {
 	}
 
 	/**
-	 * Método que relaciona un número(posición del enum tColores) con un color
+	 * Metodo que relaciona un numero(posicion del enum tColores) con un color
 	 * incluido en el enum de tColores.
 	 * 
-	 * @param _numero Este parámetro representa un número entero.
-	 * @return El método retorna un número entero convertido en un tipo tColores.
+	 * @param _numero Este parametro representa un numero entero.
+	 * @return El metodo retorna un numero entero convertido en un tipo tColores.
 	 *         (se convierte en un color del enum)
 	 */
 	public tColores intToColor(int _numero) {
@@ -89,9 +89,10 @@ public class Engine {
 	}
 
 	/**
-	 * Método que genera el array de tipo tColores.
+	 * Metodo que genera el array de tipo tColores.
 	 * 
-	 * @param _numColores
+	 * @param _numColores representa el numero de colores que tiene el tipo
+	 *                    enumerado tColores.
 	 */
 	public void generarSecuencia(int _numColores) {
 		for (int i = 0; i < secuenciaColores.length; i++) {
@@ -103,12 +104,13 @@ public class Engine {
 	}
 
 	/**
-	 * Método que compara si el color que ha puesto el usuario es el mismo que pone
+	 * Metodo que compara si el color que ha puesto el usuario es el mismo que pone
 	 * el programa
 	 * 
-	 * @param _index
-	 * @param _color
-	 * @return
+	 * @param _index indice que el color ocupa dentro del array secuenciaColores.
+	 * @param _color color introducido por el usuario.
+	 * @return Retorna que el color en la posicion _index es igual al _color
+	 *         introducido por el usuario
 	 */
 	public boolean comprobarColor(int _index, tColores _color) {
 		return secuenciaColores[_index] == _color;
@@ -116,9 +118,9 @@ public class Engine {
 	}
 
 	/**
-	 * Método que imprime la secuencia creada en el método generarSecuencia
+	 * Metodo que imprime la secuencia creada en el metodo generarSecuencia
 	 * 
-	 * @param _numero
+	 * @param _numero numero de la secuencia actual.
 	 */
 	public void mostrarSecuencia(int _numero) {
 		for (int i = 0; i < secuenciaColores.length; i++) {
@@ -128,8 +130,8 @@ public class Engine {
 	}
 
 	/**
-	 * Método que controla todo el flujo del juego, empezando por el control del
-	 * menú, limitar la impresión de la secuencia de colores y el comparador para
+	 * Metodo que controla todo el flujo del juego, empezando por el control del
+	 * menu, limitar la impresion de la secuencia de colores y el comparador para
 	 * saber si se escribe correctamente la secuencia.
 	 */
 	public void play() {
