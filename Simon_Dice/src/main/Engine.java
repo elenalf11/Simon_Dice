@@ -66,8 +66,8 @@ public class Engine {
 	 * incluido en el enum de tColores.
 	 * 
 	 * @param _numero Este parámetro representa un número entero.
-	 * @return El método retorna un número entero convertido en un tipo tColores. (se
-	 *         convierte en un color del enum)
+	 * @return El método retorna un número entero convertido en un tipo tColores.
+	 *         (se convierte en un color del enum)
 	 */
 	public tColores intToColor(int _numero) {
 		tColores elegir2 = null;
