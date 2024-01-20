@@ -153,7 +153,7 @@ public class Engine {
 			generarSecuencia(12);
 		}
 
-		for (int i = 0; i < MAX_COLORES_SEQ; i++) {
+		for (int i = 0; i < MAX_COLORES_SEQ - 2; i++) {
 			System.out.println("Pulse ENTER cuando esté listo... ¡SUERTE!");
 			new Scanner(System.in).nextLine();
 
@@ -183,10 +183,12 @@ public class Engine {
 					System.exit(0);
 				}
 			}
+			
 
 		}
+		
 
-		System.out.println("¡Enhorabuena, has ganado!");
+		System.out.println("¡ENHORABUENA, HAS GANADO!");
 
 		scanner.close();
 	}
