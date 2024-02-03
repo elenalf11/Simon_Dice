@@ -12,12 +12,17 @@ import java.util.Random;
 public class Engine {
 
 	public enum tColores {
-		ROJO, VERDE, AZUL, DORADO
+		ROJO, VERDE, AZUL, DORADO, BLANCO, MARRON, NARANJA
+	}
+	public enum tModo{
+		Facil, Dificil
 	}
 
 	Scanner scanner = new Scanner(System.in);
-	final int MAX_COLORES_SEQ = 12;
+	final int MAX_COLORES_SEQ = 15;
 	tColores[] secuenciaColores = new tColores[MAX_COLORES_SEQ];
+	boolean fallo;
+	int _numColores;
 
 	/**
 	 * Este metodo relaciona el caracter que introduce el usuario con un color
@@ -29,36 +34,26 @@ public class Engine {
 	 *         (convertirlo en un color del enum)
 	 */
 	public tColores charToColor(char _color) {
-		tColores elegir1 = null;
-		switch (_color) {
+		char color = Character.toLowerCase(_color);
+		switch (color) {
 		case 'a':
-			elegir1 = tColores.AZUL;
-			break;
-		case 'A':
-			elegir1 = tColores.AZUL;
-			break;
+			return tColores.AZUL;
 		case 'r':
-			elegir1 = tColores.ROJO;
-			break;
-		case 'R':
-			elegir1 = tColores.ROJO;
-			break;
+			return tColores.ROJO;
 		case 'v':
-			elegir1 = tColores.VERDE;
-			break;
-		case 'V':
-			elegir1 = tColores.VERDE;
-			break;
+			return tColores.VERDE;
 		case 'd':
-			elegir1 = tColores.DORADO;
-			break;
-		case 'D':
-			elegir1 = tColores.DORADO;
-			break;
+			return tColores.DORADO;
+		case 'b':
+			return tColores.BLANCO;
+		case 'm':
+			return tColores.MARRON;
+		case 'n':
+			return tColores.NARANJA;	
 		default:
 			System.out.println("Caracter incorrecto, no se corresponde con ningún color.");
 		}
-		return elegir1;
+		return null;
 	}
 
 	/**
@@ -70,22 +65,23 @@ public class Engine {
 	 *         (se convierte en un color del enum)
 	 */
 	public tColores intToColor(int _numero) {
-		tColores elegir2 = null;
 		switch (_numero) {
 		case 0:
-			elegir2 = tColores.ROJO;
-			break;
+			return tColores.ROJO;
 		case 1:
-			elegir2 = tColores.VERDE;
-			break;
+			return tColores.VERDE;
 		case 2:
-			elegir2 = tColores.AZUL;
-			break;
+			return tColores.AZUL;
 		case 3:
-			elegir2 = tColores.DORADO;
-			break;
+			return tColores.DORADO;
+		case 4:
+			return tColores.BLANCO;
+		case 5:
+			return tColores.MARRON;
+		case 6:
+			return tColores.NARANJA;	
 		}
-		return elegir2;
+		return null;
 	}
 
 	/**
@@ -95,9 +91,10 @@ public class Engine {
 	 *                    enumerado tColores.
 	 */
 	public void generarSecuencia(int _numColores) {
+		_numColores = 6;
 		for (int i = 0; i < secuenciaColores.length; i++) {
 			Random random = new Random();
-			int aleatorio = random.nextInt(0, 4);
+			int aleatorio = random.nextInt(0, _numColores);
 			secuenciaColores[i] = intToColor(aleatorio);
 		}
 
@@ -129,66 +126,88 @@ public class Engine {
 
 	}
 
+	public void start() {
+		System.out.println("[0]--- Salir");
+		System.out.println("[1]--- Jugar modo fácil");
+		System.out.println("[2]--- Jugar modo difícil");
+		System.out.println("¿Qué desea hacer?");
+		int menu = scanner.nextInt();
+		while (menu != 0) {
+			switch (menu) {
+			case 1:
+				Engine jugar = new Engine();
+				jugar.play();
+				break;
+			case 2:
+				Engine jugar2 = new Engine();
+				jugar2.play();
+				break;
+			}
+		}
+		System.out.println("Saliendo del sistema...");
+
+	}
+
 	/**
 	 * Metodo que controla todo el flujo del juego, empezando por el control del
 	 * menu, limitar la impresion de la secuencia de colores y el comparador para
 	 * saber si se escribe correctamente la secuencia.
 	 */
 	public void play() {
-		System.out.println("[1]--- Jugar");
-		System.out.println("[2]--- Salir");
-		Scanner scanner = new Scanner(System.in);
-		int menu = scanner.nextInt();
-		
-
-		if (menu == 2) {
-			System.out.println("Saliendo del sistema...");
-			System.exit(0);
-		} else if (menu == 1) {
-			System.out.println("¡Bienvenido a Simón Dice!");
-			System.out.println("¿Cuál es su nombre?");
-			String nombre = scanner.next();
-			System.out.println("Hola " + nombre + " , ¿preparad@ para comenzar a jugar?");
-
-			generarSecuencia(12);
-		}
-
-		for (int i = 0; i < MAX_COLORES_SEQ - 2; i++) {
-			System.out.println("Pulse ENTER cuando esté listo... ¡SUERTE!");
-			new Scanner(System.in).nextLine();
-
-			for (int j = 0; j < 50; j++) {
-				System.out.println();
-			}
-			mostrarSecuencia(3 + i);
-			System.out.println();
-
-			System.out.println("Memorice la secuencia, y cuando esté listo pulse ENTER...");
-			new Scanner(System.in).nextLine();
-
-			for (int j = 0; j < 50; j++) {
-				System.out.println();
-			}
-
-			System.out.println("Escriba la secuencia anterior en el orden correcto, por favor");
-			for (int m = 0; m < 3 + i; m++) {
-				System.out.println("¿Qué color había en la posición " + (m + 1) + " = ");
-				char tu_char = scanner.next().charAt(0);
-				tColores char_elegido = charToColor(tu_char);
-
-				if (comprobarColor(m, char_elegido)) {
-					System.out.println("¡Correcto! Acertaste la secuencia");
-				} else {
-					System.out.println("¡Has perdido! la suerte no te acompañó");
-					System.exit(0);
-				}
-			}
+		Engine jugar3 = new Engine();
+		System.out.println("¡Bienvenido a Simón Dice!");
+		System.out.println("¿Cuál es tu nombre? ");
+		Jugador jugador = new Jugador();
+		String nombre = scanner.next();
+		jugador.setNombre(nombre);
+		System.out.println("Hola " + jugador.getNombre() + " ,¿preparad@ para jugar?");
+		generarSecuencia(MAX_COLORES_SEQ);
 			
+			for (int i = 0; i < MAX_COLORES_SEQ - 2; i++) {
+				System.out.println("Pulse ENTER cuando esté listo... ¡SUERTE!");
+				new Scanner(System.in).nextLine();
 
-		}
+				for (int j = 0; j < 50; j++) {
+					System.out.println();
+				}
+				mostrarSecuencia(3 + i);
+				System.out.println();
+
+				System.out.println("Memorice la secuencia, y cuando esté listo pulse ENTER...");
+				new Scanner(System.in).nextLine();
+
+				for (int j = 0; j < 50; j++) {
+					System.out.println();
+				}
+
+				System.out.println("Escriba la secuencia anterior en el orden correcto, por favor");
+				for (int m = 0; m < 3 + i; m++) {
+
+					System.out.println("¿Qué color había en la posición " + (m + 1) + " = ");
+					char tu_char = scanner.next().charAt(0);
+					tColores char_elegido = charToColor(tu_char);
+
+					if (comprobarColor(m, char_elegido)) {
+						System.out.println("¡Correcto! Acertaste la secuencia");
+						fallo = false;
+					} else {
+						System.out.println("¡Has perdido! la suerte no te acompañó");
+						fallo = true;
+						jugar3.start();
+						
+						
+
+					}
+				}
+
+			}
 		
 
 		System.out.println("¡ENHORABUENA, HAS GANADO!");
+		jugar3.start();
+		for (int j = 0; j < 50; j++) {
+			System.out.println();
+		}
 
 		scanner.close();
 	}
