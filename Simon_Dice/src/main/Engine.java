@@ -14,15 +14,17 @@ public class Engine {
 	public enum tColores {
 		ROJO, VERDE, AZUL, DORADO, BLANCO, MARRON, NARANJA
 	}
-	public enum tModo{
+
+	public enum tModo {
 		Facil, Dificil
 	}
 
 	Scanner scanner = new Scanner(System.in);
 	final int MAX_COLORES_SEQ = 15;
 	tColores[] secuenciaColores = new tColores[MAX_COLORES_SEQ];
-	boolean fallo;
+	tModo[] modo = new tModo[2];
 	int _numColores;
+	int puntuacion = 0;
 
 	/**
 	 * Este metodo relaciona el caracter que introduce el usuario con un color
@@ -49,7 +51,7 @@ public class Engine {
 		case 'm':
 			return tColores.MARRON;
 		case 'n':
-			return tColores.NARANJA;	
+			return tColores.NARANJA;
 		default:
 			System.out.println("Caracter incorrecto, no se corresponde con ningún color.");
 		}
@@ -79,7 +81,7 @@ public class Engine {
 		case 5:
 			return tColores.MARRON;
 		case 6:
-			return tColores.NARANJA;	
+			return tColores.NARANJA;
 		}
 		return null;
 	}
@@ -87,17 +89,32 @@ public class Engine {
 	/**
 	 * Metodo que genera el array de tipo tColores.
 	 * 
-	 * @param _numColores representa el numero de colores que tiene el tipo
-	 *                    enumerado tColores.
+	 * @param _numColores_dificil representa el numero de colores que tiene el tipo
+	 *                            enumerado tColores. En este caso es el referente
+	 *                            al modo dificil por lo que su valor es 6
 	 */
-	public void generarSecuencia(int _numColores) {
-		_numColores = 6;
+	public void generarSecuencia_dificil(int _numColores_dificil) {
+		_numColores_dificil = 6;
 		for (int i = 0; i < secuenciaColores.length; i++) {
 			Random random = new Random();
-			int aleatorio = random.nextInt(0, _numColores);
+			int aleatorio = random.nextInt(0, _numColores_dificil);
 			secuenciaColores[i] = intToColor(aleatorio);
 		}
-
+	}
+	/**
+	 * Metodo que genera el array de tipo tColores.
+	 * 
+	 * @param _numColores_facil representa el numero de colores que tiene el tipo
+	 *                            enumerado tColores. En este caso es el referente
+	 *                            al modo facil por lo que su valor es 4
+	 */
+	public void generarSecuencia_facil(int _numColores_facil) {
+		_numColores_facil = 4;
+		for (int i = 0; i < secuenciaColores.length; i++) {
+			Random random = new Random();
+			int aleatorio = random.nextInt(0, _numColores_facil);
+			secuenciaColores[i] = intToColor(aleatorio);
+		}
 	}
 
 	/**
@@ -126,6 +143,21 @@ public class Engine {
 
 	}
 
+	/**
+	 * Metodo que permite utilizar las ayudas disponibles.
+	 * 
+	 * @param _index indice del color que se desea comprobar
+	 * @return
+	 */
+	public boolean usarAyuda(int _index) {
+		int ayudas = 3;
+		
+
+	}
+
+	/**
+	 * Metodo que controla el inicio del juego y las diferentes opciones disponibles
+	 */
 	public void start() {
 		System.out.println("[0]--- Salir");
 		System.out.println("[1]--- Jugar modo fácil");
@@ -136,11 +168,11 @@ public class Engine {
 			switch (menu) {
 			case 1:
 				Engine jugar = new Engine();
-				jugar.play();
+				jugar.play(tModo.Facil);
 				break;
 			case 2:
 				Engine jugar2 = new Engine();
-				jugar2.play();
+				jugar2.play(tModo.Dificil);
 				break;
 			}
 		}
@@ -153,7 +185,7 @@ public class Engine {
 	 * menu, limitar la impresion de la secuencia de colores y el comparador para
 	 * saber si se escribe correctamente la secuencia.
 	 */
-	public void play() {
+	public void play(tModo modo) {
 		Engine jugar3 = new Engine();
 		System.out.println("¡Bienvenido a Simón Dice!");
 		System.out.println("¿Cuál es tu nombre? ");
@@ -161,48 +193,54 @@ public class Engine {
 		String nombre = scanner.next();
 		jugador.setNombre(nombre);
 		System.out.println("Hola " + jugador.getNombre() + " ,¿preparad@ para jugar?");
-		generarSecuencia(MAX_COLORES_SEQ);
-			
-			for (int i = 0; i < MAX_COLORES_SEQ - 2; i++) {
-				System.out.println("Pulse ENTER cuando esté listo... ¡SUERTE!");
-				new Scanner(System.in).nextLine();
-
-				for (int j = 0; j < 50; j++) {
-					System.out.println();
-				}
-				mostrarSecuencia(3 + i);
-				System.out.println();
-
-				System.out.println("Memorice la secuencia, y cuando esté listo pulse ENTER...");
-				new Scanner(System.in).nextLine();
-
-				for (int j = 0; j < 50; j++) {
-					System.out.println();
-				}
-
-				System.out.println("Escriba la secuencia anterior en el orden correcto, por favor");
-				for (int m = 0; m < 3 + i; m++) {
-
-					System.out.println("¿Qué color había en la posición " + (m + 1) + " = ");
-					char tu_char = scanner.next().charAt(0);
-					tColores char_elegido = charToColor(tu_char);
-
-					if (comprobarColor(m, char_elegido)) {
-						System.out.println("¡Correcto! Acertaste la secuencia");
-						fallo = false;
-					} else {
-						System.out.println("¡Has perdido! la suerte no te acompañó");
-						fallo = true;
-						jugar3.start();
-						
-						
-
-					}
-				}
-
-			}
+		if(modo == tModo.Facil) {
+			generarSecuencia_facil(MAX_COLORES_SEQ);
+		}else {
+			generarSecuencia_dificil(MAX_COLORES_SEQ);
+		}
 		
 
+		for (int i = 0; i < MAX_COLORES_SEQ - 2; i++) {
+			System.out.println("Pulse ENTER cuando esté listo... ¡SUERTE!");
+			new Scanner(System.in).nextLine();
+
+			for (int j = 0; j < 50; j++) {
+				System.out.println();
+			}
+			mostrarSecuencia(3 + i);
+			System.out.println();
+
+			System.out.println("Memorice la secuencia, y cuando esté listo pulse ENTER...");
+			new Scanner(System.in).nextLine();
+
+			for (int j = 0; j < 50; j++) {
+				System.out.println();
+			}
+
+			System.out.println("Escriba la secuencia anterior en el orden correcto, por favor");
+			for (int m = 0; m < 3 + i; m++) {
+
+				System.out.println("¿Qué color había en la posición " + (m + 1) + " = ");
+				char tu_char = scanner.next().charAt(0);
+				tColores char_elegido = charToColor(tu_char);
+
+				if (comprobarColor(m, char_elegido)) {
+					System.out.println("¡Correcto! Acertaste la secuencia");
+					puntuacion += 2;
+				} else {
+					System.out.println("¡Has perdido! la suerte no te acompañó");
+					for (int j = 0; j < 50; j++) {
+						System.out.println();
+					}
+					jugar3.start();
+
+				}
+				puntuacion += 5;
+			}
+
+		}
+		
+		puntuacion += 40;
 		System.out.println("¡ENHORABUENA, HAS GANADO!");
 		jugar3.start();
 		for (int j = 0; j < 50; j++) {
