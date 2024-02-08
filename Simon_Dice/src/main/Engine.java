@@ -25,6 +25,9 @@ public class Engine {
 	tModo[] modo = new tModo[2];
 	int _numColores;
 	int puntuacion = 0;
+	int i = 0;
+
+	boolean fallo = false;
 
 	/**
 	 * Este metodo relaciona el caracter que introduce el usuario con un color
@@ -149,11 +152,11 @@ public class Engine {
 	 * @param _index indice del color que se desea comprobar
 	 * @return
 	 */
-	public boolean usarAyuda(int _index) {
-		int ayudas = 3;
+	//public boolean usarAyuda(int _index) {
+		//int ayudas = 3;
 		
 
-	}
+	//}
 
 	/**
 	 * Metodo que controla el inicio del juego y las diferentes opciones disponibles
@@ -199,8 +202,8 @@ public class Engine {
 			generarSecuencia_dificil(MAX_COLORES_SEQ);
 		}
 		
-
-		for (int i = 0; i < MAX_COLORES_SEQ - 2; i++) {
+		while(i < MAX_COLORES_SEQ - 2 || !fallo) {
+			
 			System.out.println("Pulse ENTER cuando esté listo... ¡SUERTE!");
 			new Scanner(System.in).nextLine();
 
@@ -219,7 +222,6 @@ public class Engine {
 
 			System.out.println("Escriba la secuencia anterior en el orden correcto, por favor");
 			for (int m = 0; m < 3 + i; m++) {
-
 				System.out.println("¿Qué color había en la posición " + (m + 1) + " = ");
 				char tu_char = scanner.next().charAt(0);
 				tColores char_elegido = charToColor(tu_char);
@@ -227,18 +229,24 @@ public class Engine {
 				if (comprobarColor(m, char_elegido)) {
 					System.out.println("¡Correcto! Acertaste la secuencia");
 					puntuacion += 2;
+					fallo = false;
 				} else {
 					System.out.println("¡Has perdido! la suerte no te acompañó");
+					fallo = true;
 					for (int j = 0; j < 50; j++) {
 						System.out.println();
 					}
 					jugar3.start();
 
 				}
-				puntuacion += 5;
+				puntuacion += 5;	
 			}
-
+			i++;
 		}
+		
+			
+
+		
 		
 		puntuacion += 40;
 		System.out.println("¡ENHORABUENA, HAS GANADO!");
