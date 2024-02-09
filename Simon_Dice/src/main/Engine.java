@@ -27,7 +27,6 @@ public class Engine {
 	int puntuacion = 0;
 	int i = 0;
 	String nombre;
-
 	boolean fallo = false;
 
 	/**
