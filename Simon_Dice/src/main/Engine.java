@@ -56,8 +56,6 @@ public class Engine {
 			return tColores.MARRON;
 		case 'n':
 			return tColores.NARANJA;
-		default:
-			System.out.println("Caracter incorrecto, no se corresponde con ningún color.");
 		}
 		return null;
 	}
@@ -154,10 +152,17 @@ public class Engine {
 	 * @param _index indice del color que se desea comprobar
 	 * @return
 	 */
-	// public boolean usarAyuda(int _index) {
-	// int ayudas = 3;
-
-	// }
+	public boolean usarAyuda(int _index) {
+		int ayudas = 3;
+		if(ayudas <= 3) {
+			mostrarSecuencia(_index);
+			ayudas --;
+			return true;
+		}else if(ayudas == 0) {
+			System.out.println("No quedan ayudas disponibles");
+		}
+		return true;
+	}
 
 	/**
 	 * Metodo que controla el inicio del juego y las diferentes opciones disponibles
@@ -227,7 +232,10 @@ public class Engine {
 						System.out.println("¡Correcto! Acertaste la secuencia");
 						jugador.SumaPuntos(2);
 						fallo = false;
-					} else {
+					} else if(tu_char == 'x' || tu_char == 'X') {
+						usarAyuda(m + 1);
+						jugador.RestaPuntos(8);
+					}else {
 						System.out.println("¡Has perdido! la suerte no te acompañó, tenías un total de "
 								+ jugador.getPuntuacion(puntuacion) + " puntos");
 						fallo = true;	
@@ -278,7 +286,10 @@ public class Engine {
 						System.out.println("¡Correcto! Acertaste la secuencia");
 						jugador.SumaPuntos(4);
 						fallo = false;
-					} else {
+					}else if(tu_char == 'x' || tu_char == 'X') {
+						usarAyuda(m + 1);
+						jugador.RestaPuntos(16);
+					}else {
 						System.out.println("¡Has perdido! la suerte no te acompañó, tenías un total de "
 								+ jugador.getPuntuacion(puntuacion) + " puntos");
 						fallo = true;
