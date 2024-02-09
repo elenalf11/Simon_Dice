@@ -28,6 +28,7 @@ public class Engine {
 	int i = 0;
 	String nombre;
 	boolean fallo = false;
+	int ayuda = 3;
 
 	/**
 	 * Este metodo relaciona el caracter que introduce el usuario con un color
@@ -152,14 +153,7 @@ public class Engine {
 	 * @return
 	 */
 	public boolean usarAyuda(int _index) {
-		int ayudas = 3;
-		if(ayudas <= 3) {
-			mostrarSecuencia(_index);
-			ayudas --;
-			return true;
-		}else if(ayudas == 0) {
-			System.out.println("No quedan ayudas disponibles");
-		}
+		mostrarSecuencia(_index);	
 		return true;
 	}
 
@@ -214,7 +208,7 @@ public class Engine {
 				mostrarSecuencia(3 + i);
 				System.out.println();
 
-				System.out.println("Memorice la secuencia, y cuando esté listo pulse ENTER...");
+				System.out.println("Tienes " + ayuda + " ayudas, memorice la secuencia, y cuando esté listo pulse ENTER...");
 				new Scanner(System.in).nextLine();
 
 				for (int j = 0; j < 50; j++) {
@@ -231,10 +225,15 @@ public class Engine {
 						System.out.println("¡Correcto! Acertaste la secuencia");
 						jugador.SumaPuntos(2);
 						fallo = false;
-					} else if(tu_char == 'x' || tu_char == 'X') {
+					} else if(tu_char == 'x' || tu_char == 'X' && ayuda != 0 ) {
 						usarAyuda(m + 1);
 						jugador.RestaPuntos(8);
-					}else {
+						ayuda--;
+						
+					}else if (ayuda == 0) {
+						System.out.println("Lo siento no tienes más ayudas");
+					}
+					else {
 						System.out.println("¡Has perdido! la suerte no te acompañó, tenías un total de "
 								+ jugador.getPuntuacion(puntuacion) + " puntos");
 						fallo = true;	
@@ -285,10 +284,14 @@ public class Engine {
 						System.out.println("¡Correcto! Acertaste la secuencia");
 						jugador.SumaPuntos(4);
 						fallo = false;
-					}else if(tu_char == 'x' || tu_char == 'X') {
+					}else if(tu_char == 'x' || tu_char == 'X' && ayuda != 0) {
 						usarAyuda(m + 1);
 						jugador.RestaPuntos(16);
-					}else {
+						ayuda--;
+					}else if(ayuda == 0) {
+						System.out.println("Lo sinto no tienes más ayudas");
+					}
+					else {
 						System.out.println("¡Has perdido! la suerte no te acompañó, tenías un total de "
 								+ jugador.getPuntuacion(puntuacion) + " puntos");
 						fallo = true;
