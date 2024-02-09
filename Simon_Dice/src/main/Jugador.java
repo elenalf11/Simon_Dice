@@ -18,7 +18,7 @@ public class Jugador {
 	 * 
 	 * @param nombre Es el nombre del usuario
 	 */
-	public Jugador() {
+	public Jugador(String nombre) {
 		this.nombre = nombre;
 		this.puntuacion = 0;
 		
@@ -38,7 +38,7 @@ public class Jugador {
 	 * 
 	 * @return Retorna la puntuacion del usuario jugador
 	 */
-	public int getPuntuacion() {
+	public int getPuntuacion(int puntuacion) {
 		return this.puntuacion;
 	}
 
@@ -48,12 +48,22 @@ public class Jugador {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
 	/**
-	 * Metodo set Puntuacion
+	 * Metodo que suma los puntos del usuario
+	 * @param puntosmas son los puntos que hay que aumentar al usuario
+	 * @return devuelve la puntuacion 
 	 */
-	public void setPuntuacion() {
-		this.puntuacion = 0;
+	public int SumaPuntos (int puntosmas) {
+		return this.puntuacion += puntosmas;
 	}
+	/**
+	 * Metodo que resta los puntos del usuario
+	 * @param puntosmenos son los puntos que hay que quitar al usuario
+	 * @return devuelve la puntuacion 
+	 */
+	public int RestaPuntos (int puntosmenos) {
+		return this.puntuacion -= puntosmenos;
+	}
+
 
 }

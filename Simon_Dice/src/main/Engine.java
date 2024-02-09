@@ -26,6 +26,7 @@ public class Engine {
 	int _numColores;
 	int puntuacion = 0;
 	int i = 0;
+	String nombre;
 
 	boolean fallo = false;
 
@@ -104,12 +105,13 @@ public class Engine {
 			secuenciaColores[i] = intToColor(aleatorio);
 		}
 	}
+
 	/**
 	 * Metodo que genera el array de tipo tColores.
 	 * 
 	 * @param _numColores_facil representa el numero de colores que tiene el tipo
-	 *                            enumerado tColores. En este caso es el referente
-	 *                            al modo facil por lo que su valor es 4
+	 *                          enumerado tColores. En este caso es el referente al
+	 *                          modo facil por lo que su valor es 4
 	 */
 	public void generarSecuencia_facil(int _numColores_facil) {
 		_numColores_facil = 4;
@@ -152,11 +154,10 @@ public class Engine {
 	 * @param _index indice del color que se desea comprobar
 	 * @return
 	 */
-	//public boolean usarAyuda(int _index) {
-		//int ayudas = 3;
-		
+	// public boolean usarAyuda(int _index) {
+	// int ayudas = 3;
 
-	//}
+	// }
 
 	/**
 	 * Metodo que controla el inicio del juego y las diferentes opciones disponibles
@@ -192,70 +193,113 @@ public class Engine {
 		Engine jugar3 = new Engine();
 		System.out.println("¡Bienvenido a Simón Dice!");
 		System.out.println("¿Cuál es tu nombre? ");
-		Jugador jugador = new Jugador();
+		Jugador jugador = new Jugador(nombre);
 		String nombre = scanner.next();
 		jugador.setNombre(nombre);
 		System.out.println("Hola " + jugador.getNombre() + " ,¿preparad@ para jugar?");
-		if(modo == tModo.Facil) {
+		if (modo == tModo.Facil) {
 			generarSecuencia_facil(MAX_COLORES_SEQ);
-		}else {
-			generarSecuencia_dificil(MAX_COLORES_SEQ);
-		}
-		
-		while(i < MAX_COLORES_SEQ - 2 || !fallo) {
-			
-			System.out.println("Pulse ENTER cuando esté listo... ¡SUERTE!");
-			new Scanner(System.in).nextLine();
+			while (i < MAX_COLORES_SEQ - 2 || !fallo) {
 
-			for (int j = 0; j < 50; j++) {
-				System.out.println();
-			}
-			mostrarSecuencia(3 + i);
-			System.out.println();
+				System.out.println("Pulse ENTER cuando esté listo... ¡SUERTE!");
+				new Scanner(System.in).nextLine();
 
-			System.out.println("Memorice la secuencia, y cuando esté listo pulse ENTER...");
-			new Scanner(System.in).nextLine();
-
-			for (int j = 0; j < 50; j++) {
-				System.out.println();
-			}
-
-			System.out.println("Escriba la secuencia anterior en el orden correcto, por favor");
-			for (int m = 0; m < 3 + i; m++) {
-				System.out.println("¿Qué color había en la posición " + (m + 1) + " = ");
-				char tu_char = scanner.next().charAt(0);
-				tColores char_elegido = charToColor(tu_char);
-
-				if (comprobarColor(m, char_elegido)) {
-					System.out.println("¡Correcto! Acertaste la secuencia");
-					puntuacion += 2;
-					fallo = false;
-				} else {
-					System.out.println("¡Has perdido! la suerte no te acompañó");
-					fallo = true;
-					for (int j = 0; j < 50; j++) {
-						System.out.println();
-					}
-					jugar3.start();
-
+				for (int j = 0; j < 50; j++) {
+					System.out.println();
 				}
-				puntuacion += 5;	
+				mostrarSecuencia(3 + i);
+				System.out.println();
+
+				System.out.println("Memorice la secuencia, y cuando esté listo pulse ENTER...");
+				new Scanner(System.in).nextLine();
+
+				for (int j = 0; j < 50; j++) {
+					System.out.println();
+				}
+
+				System.out.println("Escriba la secuencia anterior en el orden correcto, por favor");
+				for (int m = 0; m < 3 + i; m++) {
+					System.out.println("¿Qué color había en la posición " + (m + 1) + " = ");
+					char tu_char = scanner.next().charAt(0);
+					tColores char_elegido = charToColor(tu_char);
+
+					if (comprobarColor(m, char_elegido)) {
+						System.out.println("¡Correcto! Acertaste la secuencia");
+						jugador.SumaPuntos(2);
+						fallo = false;
+					} else {
+						System.out.println("¡Has perdido! la suerte no te acompañó, tenías un total de "
+								+ jugador.getPuntuacion(puntuacion) + " puntos");
+						fallo = true;	
+						jugar3.start();
+
+					}
+					
+				}
+				jugador.SumaPuntos(5);
+				i++;
 			}
-			i++;
-		}
-		
-			
+			jugador.SumaPuntos(40);
+			System.out.println("¡ENHORABUENA, HAS GANADO! Has conseguido un total de "
+					+ jugador.getPuntuacion(puntuacion) + " puntos");
+			jugar3.start();
+			for (int j = 0; j < 50; j++) {
+				System.out.println();
+			}
 
-		
-		
-		puntuacion += 40;
-		System.out.println("¡ENHORABUENA, HAS GANADO!");
-		jugar3.start();
-		for (int j = 0; j < 50; j++) {
-			System.out.println();
+			scanner.close();
+		} else {
+			generarSecuencia_dificil(MAX_COLORES_SEQ);
+			while (i < MAX_COLORES_SEQ - 2 || !fallo) {
+
+				System.out.println("Pulse ENTER cuando esté listo... ¡SUERTE!");
+				new Scanner(System.in).nextLine();
+
+				for (int j = 0; j < 50; j++) {
+					System.out.println();
+				}
+				mostrarSecuencia(3 + i);
+				System.out.println();
+
+				System.out.println("Memorice la secuencia, y cuando esté listo pulse ENTER...");
+				new Scanner(System.in).nextLine();
+
+				for (int j = 0; j < 50; j++) {
+					System.out.println();
+				}
+
+				System.out.println("Escriba la secuencia anterior en el orden correcto, por favor");
+				for (int m = 0; m < 3 + i; m++) {
+					System.out.println("¿Qué color había en la posición " + (m + 1) + " = ");
+					char tu_char = scanner.next().charAt(0);
+					tColores char_elegido = charToColor(tu_char);
+
+					if (comprobarColor(m, char_elegido)) {
+						System.out.println("¡Correcto! Acertaste la secuencia");
+						jugador.SumaPuntos(4);
+						fallo = false;
+					} else {
+						System.out.println("¡Has perdido! la suerte no te acompañó, tenías un total de "
+								+ jugador.getPuntuacion(puntuacion) + " puntos");
+						fallo = true;
+						jugar3.start();
+
+					}
+					jugador.SumaPuntos(10);
+				}
+				i++;
+			}
+			jugador.SumaPuntos(80);
+			System.out.println("¡ENHORABUENA, HAS GANADO! Has conseguido un total de "
+					+ jugador.getPuntuacion(puntuacion) + " puntos");
+			jugar3.start();
+			for (int j = 0; j < 50; j++) {
+				System.out.println();
+			}
+
+			scanner.close();
 		}
 
-		scanner.close();
 	}
 
 }
