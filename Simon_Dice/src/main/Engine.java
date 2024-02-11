@@ -29,6 +29,7 @@ public class Engine {
 	String nombre;
 	boolean fallo = false;
 	int ayuda = 3;
+	int menu;
 
 	/**
 	 * Este metodo relaciona el caracter que introduce el usuario con un color
@@ -153,21 +154,33 @@ public class Engine {
 	 * @return
 	 */
 	public boolean usarAyuda(int _index) {
-		mostrarSecuencia(_index);	
-		return true;
+		if (ayuda < 1) {
+			System.out.println("Lo siento, no tienes más ayudas");
+			return true;
+
+		} else {
+			ayuda -= 1;
+			System.out.println("El siguiente color es: " + secuenciaColores[_index] + " , te siguen quedando " + ayuda
+					+ " ayudas");
+			return false;
+		}
+
 	}
 
 	/**
 	 * Metodo que controla el inicio del juego y las diferentes opciones disponibles
 	 */
 	public void start() {
-		System.out.println("[0]--- Salir");
-		System.out.println("[1]--- Jugar modo fácil");
-		System.out.println("[2]--- Jugar modo difícil");
-		System.out.println("¿Qué desea hacer?");
-		int menu = scanner.nextInt();
-		while (menu != 0) {
+		do {
+			System.out.println("[0]--- Salir");
+			System.out.println("[1]--- Jugar modo fácil");
+			System.out.println("[2]--- Jugar modo difícil");
+			System.out.println("¿Qué desea hacer?");
+			menu = scanner.nextInt();
 			switch (menu) {
+			case 0:
+				System.out.println("Saliendo del sistema...");
+				break;
 			case 1:
 				Engine jugar = new Engine();
 				jugar.play(tModo.Facil);
@@ -177,8 +190,7 @@ public class Engine {
 				jugar2.play(tModo.Dificil);
 				break;
 			}
-		}
-		System.out.println("Saliendo del sistema...");
+		} while (menu != 0);
 
 	}
 
@@ -186,6 +198,8 @@ public class Engine {
 	 * Metodo que controla todo el flujo del juego, empezando por el control del
 	 * menu, limitar la impresion de la secuencia de colores y el comparador para
 	 * saber si se escribe correctamente la secuencia.
+	 * 
+	 * @param modo es el modo de juego que elige el usuario en el metodo play
 	 */
 	public void play(tModo modo) {
 		Engine jugar3 = new Engine();
@@ -196,121 +210,124 @@ public class Engine {
 		jugador.setNombre(nombre);
 		System.out.println("Hola " + jugador.getNombre() + " ,¿preparad@ para jugar?");
 		if (modo == tModo.Facil) {
-			generarSecuencia_facil(MAX_COLORES_SEQ);
-			while (i < MAX_COLORES_SEQ - 2 || !fallo) {
+			int x = 0;
+			do {
+				generarSecuencia_facil(MAX_COLORES_SEQ);
+				while (x < MAX_COLORES_SEQ - 2 || !fallo) {
 
-				System.out.println("Pulse ENTER cuando esté listo... ¡SUERTE!");
-				new Scanner(System.in).nextLine();
+					System.out.println("Pulse ENTER cuando esté listo... ¡SUERTE!");
+					new Scanner(System.in).nextLine();
 
-				for (int j = 0; j < 50; j++) {
-					System.out.println();
-				}
-				mostrarSecuencia(3 + i);
-				System.out.println();
-
-				System.out.println("Tienes " + ayuda + " ayudas, memorice la secuencia, y cuando esté listo pulse ENTER...");
-				new Scanner(System.in).nextLine();
-
-				for (int j = 0; j < 50; j++) {
-					System.out.println();
-				}
-
-				System.out.println("Escriba la secuencia anterior en el orden correcto, por favor");
-				for (int m = 0; m < 3 + i; m++) {
-					System.out.println("¿Qué color había en la posición " + (m + 1) + " = ");
-					char tu_char = scanner.next().charAt(0);
-					tColores char_elegido = charToColor(tu_char);
-
-					if (comprobarColor(m, char_elegido)) {
-						System.out.println("¡Correcto! Acertaste la secuencia");
-						jugador.SumaPuntos(2);
-						fallo = false;
-					} else if(tu_char == 'x' || tu_char == 'X' && ayuda != 0 ) {
-						usarAyuda(m + 1);
-						jugador.RestaPuntos(8);
-						ayuda--;
-						
-					}else if (ayuda == 0) {
-						System.out.println("Lo siento no tienes más ayudas");
+					for (int j = 0; j < 50; j++) {
+						System.out.println();
 					}
-					else {
-						System.out.println("¡Has perdido! la suerte no te acompañó, tenías un total de "
-								+ jugador.getPuntuacion(puntuacion) + " puntos");
-						fallo = true;	
-						jugar3.start();
+					mostrarSecuencia(3 + x);
+					System.out.println();
 
+					System.out.println(" Memorice la secuencia, y cuando esté listo pulse ENTER...");
+					new Scanner(System.in).nextLine();
+
+					for (int j = 0; j < 50; j++) {
+						System.out.println();
 					}
-					
-				}
-				jugador.SumaPuntos(5);
-				i++;
-			}
-			jugador.SumaPuntos(40);
-			System.out.println("¡ENHORABUENA, HAS GANADO! Has conseguido un total de "
-					+ jugador.getPuntuacion(puntuacion) + " puntos");
-			jugar3.start();
-			for (int j = 0; j < 50; j++) {
-				System.out.println();
-			}
 
-			scanner.close();
+					System.out.println("Escriba la secuencia anterior en el orden correcto, por favor");
+					int y = 0;
+					while (y < (3 + x) && !fallo) {
+						System.out.println("¿Qué colores habían en la secuencia " + (x + 1) + " = ");
+						char tu_char = scanner.next().charAt(0);
+						tColores char_elegido = charToColor(tu_char);
+
+						if (comprobarColor(y, char_elegido)) {
+							y++;
+							System.out.println("¡Correcto! Acertaste la secuencia");
+							jugador.SumaPuntos(2);
+						} else {
+							System.out.println("¡Has perdido! la suerte no te acompañó, tenías un total de "
+									+ jugador.getPuntuacion(puntuacion) + " puntos");
+							fallo = true;
+							jugar3.start();
+
+						}
+					}
+					jugador.SumaPuntos(5);
+					x++;
+				}
+				if (x == MAX_COLORES_SEQ - 2) {
+					jugador.SumaPuntos(40);
+					System.out.println("¡ENHORABUENA, HAS GANADO! Has conseguido un total de "
+							+ jugador.getPuntuacion(puntuacion) + " puntos");
+					jugar3.start();
+					for (int j = 0; j < 50; j++) {
+						System.out.println();
+					}
+				}
+				scanner.close();
+			} while (x < MAX_COLORES_SEQ && !fallo);
+
 		} else {
-			generarSecuencia_dificil(MAX_COLORES_SEQ);
-			while (i < MAX_COLORES_SEQ - 2 || !fallo) {
+			int x = 0;
+			do {
+				generarSecuencia_dificil(MAX_COLORES_SEQ);
+				while (x < MAX_COLORES_SEQ - 2 || !fallo) {
 
-				System.out.println("Pulse ENTER cuando esté listo... ¡SUERTE!");
-				new Scanner(System.in).nextLine();
+					System.out.println("Pulse ENTER cuando esté listo... ¡SUERTE!");
+					new Scanner(System.in).nextLine();
 
-				for (int j = 0; j < 50; j++) {
-					System.out.println();
-				}
-				mostrarSecuencia(3 + i);
-				System.out.println();
-
-				System.out.println("Memorice la secuencia, y cuando esté listo pulse ENTER...");
-				new Scanner(System.in).nextLine();
-
-				for (int j = 0; j < 50; j++) {
-					System.out.println();
-				}
-
-				System.out.println("Escriba la secuencia anterior en el orden correcto, por favor");
-				for (int m = 0; m < 3 + i; m++) {
-					System.out.println("¿Qué color había en la posición " + (m + 1) + " = ");
-					char tu_char = scanner.next().charAt(0);
-					tColores char_elegido = charToColor(tu_char);
-
-					if (comprobarColor(m, char_elegido)) {
-						System.out.println("¡Correcto! Acertaste la secuencia");
-						jugador.SumaPuntos(4);
-						fallo = false;
-					}else if(tu_char == 'x' || tu_char == 'X' && ayuda != 0) {
-						usarAyuda(m + 1);
-						jugador.RestaPuntos(16);
-						ayuda--;
-					}else if(ayuda == 0) {
-						System.out.println("Lo sinto no tienes más ayudas");
+					for (int j = 0; j < 50; j++) {
+						System.out.println();
 					}
-					else {
-						System.out.println("¡Has perdido! la suerte no te acompañó, tenías un total de "
-								+ jugador.getPuntuacion(puntuacion) + " puntos");
-						fallo = true;
-						jugar3.start();
+					mostrarSecuencia(3 + x);
+					System.out.println();
+
+					System.out.println(" Memorice la secuencia, y cuando esté listo pulse ENTER...");
+					new Scanner(System.in).nextLine();
+
+					for (int j = 0; j < 50; j++) {
+						System.out.println();
+					}
+
+					System.out.println("Escriba la secuencia anterior en el orden correcto, por favor");
+					int y = 0;
+					while (y < (3 + x) && !fallo) {
+						System.out.println("¿Qué colores habían en la secuencia " + (x + 1) + " = ");
+						char tu_char = scanner.next().charAt(0);
+						tColores char_elegido = charToColor(tu_char);
+
+						if (tu_char == 'x' || tu_char == 'X' && ayuda > 0) {
+							y++;
+							usarAyuda(y);
+							jugador.RestaPuntos(8);
+						} else if (tu_char == 'x' || tu_char == 'X' && ayuda < 1) {
+							usarAyuda(y);
+						} else if (comprobarColor(y, char_elegido)) {
+							y++;
+							System.out.println("¡Correcto! Acertaste la secuencia");
+							jugador.SumaPuntos(4);
+						} else {
+							System.out.println("¡Has perdido! la suerte no te acompañó, tenías un total de "
+									+ jugador.getPuntuacion(puntuacion) + " puntos");
+							fallo = true;
+							jugar3.start();
+
+						}
 
 					}
 					jugador.SumaPuntos(10);
+					x++;
 				}
-				i++;
-			}
-			jugador.SumaPuntos(80);
-			System.out.println("¡ENHORABUENA, HAS GANADO! Has conseguido un total de "
-					+ jugador.getPuntuacion(puntuacion) + " puntos");
-			jugar3.start();
-			for (int j = 0; j < 50; j++) {
-				System.out.println();
-			}
+				if (x == MAX_COLORES_SEQ - 2) {
+					jugador.SumaPuntos(80);
+					System.out.println("¡ENHORABUENA, HAS GANADO! Has conseguido un total de "
+							+ jugador.getPuntuacion(puntuacion) + " puntos");
+					jugar3.start();
+					for (int j = 0; j < 50; j++) {
+						System.out.println();
+					}
+				}
 
-			scanner.close();
+				scanner.close();
+			} while (x < MAX_COLORES_SEQ && !fallo);
 		}
 
 	}
