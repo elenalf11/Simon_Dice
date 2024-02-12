@@ -180,6 +180,7 @@ public class Engine {
 			switch (menu) {
 			case 0:
 				System.out.println("Saliendo del sistema...");
+				System.exit(0);
 				break;
 			case 1:
 				Engine jugar = new Engine();
