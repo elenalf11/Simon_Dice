@@ -156,10 +156,15 @@ public class Engine {
 	public void start() {
 		int menu;
 		do {
+			System.out.println("¡Bienvenido a Simón Dice!");
+			System.out.println("¿Cuál es tu nombre? ");
+			Jugador jugador = new Jugador(nombre);
+			String nombre = scanner.next();
+			jugador.setNombre(nombre);
+			System.out.println("Hola " +  jugador.getNombre() + " ,¿qué desea hacer?");
 			System.out.println("[0]--- Salir");
 			System.out.println("[1]--- Jugar modo fácil");
 			System.out.println("[2]--- Jugar modo difícil");
-			System.out.println("¿Qué desea hacer?");
 			menu = scanner.nextInt();
 			switch (menu) {
 			case 0:
@@ -185,12 +190,7 @@ public class Engine {
 	 * @param modo es el modo de juego que elige el usuario en el metodo play
 	 */
 	public void play(tModo modo) {
-		System.out.println("¡Bienvenido a Simón Dice!");
-		System.out.println("¿Cuál es tu nombre? ");
-		Jugador jugador = new Jugador(nombre);
-		String nombre = scanner.next();
-		jugador.setNombre(nombre);
-		System.out.println("Hola " + jugador.getNombre() + " ,¿preparad@ para jugar?");
+		Jugador jugador = new Jugador (nombre);
 		if (modo == tModo.Facil) {
 			generarSecuencia(this.MAX_COLORES_FACIL);
 		} else {
