@@ -156,13 +156,13 @@ public class Engine {
 	public boolean usarAyuda(int _index) {
 		if (ayuda < 1) {
 			System.out.println("Lo siento, no tienes más ayudas");
-			return true;
+			return false;
 
 		} else {
 			ayuda -= 1;
 			System.out.println("El siguiente color es: " + secuenciaColores[_index] + " , te siguen quedando " + ayuda
 					+ " ayudas");
-			return false;
+			return true;
 		}
 
 	}
@@ -238,8 +238,13 @@ public class Engine {
 						System.out.println("¿Qué colores habían en la secuencia " + (x + 1) + " = ");
 						char tu_char = scanner.next().charAt(0);
 						tColores char_elegido = charToColor(tu_char);
-
-						if (comprobarColor(y, char_elegido)) {
+						if (tu_char == 'x' || tu_char == 'X' && ayuda > 0) {
+							y++;
+							usarAyuda(y);
+							jugador.RestaPuntos(8);
+						} else if (tu_char == 'x' || tu_char == 'X' && ayuda < 1) {
+							usarAyuda(y);
+						} else if (comprobarColor(y, char_elegido)) {
 							y++;
 							System.out.println("¡Correcto! Acertaste la secuencia");
 							jugador.SumaPuntos(2);
