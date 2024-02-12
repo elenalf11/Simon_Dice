@@ -20,16 +20,16 @@ public class Engine {
 	}
 
 	Scanner scanner = new Scanner(System.in);
-	final int MAX_COLORES_SEQ = 15;
-	tColores[] secuenciaColores = new tColores[MAX_COLORES_SEQ];
+	private final int MAX_COLORES_SEQ = 15;
+	private final int MAX_COLORES_FACIL = 4;
+	private final int MAX_COLORES_DIFICIL = 6;
+	private tColores[] secuenciaColores = new tColores[MAX_COLORES_SEQ];
 	tModo[] modo = new tModo[2];
-	int _numColores;
-	int puntuacion = 0;
-	int i = 0;
+	private int puntuacion = 0;
 	String nombre;
-	boolean fallo = false;
-	int ayuda = 3;
-	int menu;
+	private boolean fallo = false;
+	private int ayuda = 3;
+	
 
 	/**
 	 * Este metodo relaciona el caracter que introduce el usuario con un color
@@ -96,28 +96,11 @@ public class Engine {
 	 *                            enumerado tColores. En este caso es el referente
 	 *                            al modo dificil por lo que su valor es 6
 	 */
-	public void generarSecuencia_dificil(int _numColores_dificil) {
-		_numColores_dificil = 6;
-		for (int i = 0; i < secuenciaColores.length; i++) {
+	public void generarSecuencia(int _numColores) {
+		for (int i = 0; i < this.secuenciaColores.length; i++) {
 			Random random = new Random();
-			int aleatorio = random.nextInt(0, _numColores_dificil);
-			secuenciaColores[i] = intToColor(aleatorio);
-		}
-	}
-
-	/**
-	 * Metodo que genera el array de tipo tColores.
-	 * 
-	 * @param _numColores_facil representa el numero de colores que tiene el tipo
-	 *                          enumerado tColores. En este caso es el referente al
-	 *                          modo facil por lo que su valor es 4
-	 */
-	public void generarSecuencia_facil(int _numColores_facil) {
-		_numColores_facil = 4;
-		for (int i = 0; i < secuenciaColores.length; i++) {
-			Random random = new Random();
-			int aleatorio = random.nextInt(0, _numColores_facil);
-			secuenciaColores[i] = intToColor(aleatorio);
+			int aleatorio = random.nextInt(0, _numColores);
+			this.secuenciaColores[i] = intToColor(aleatorio);
 		}
 	}
 
@@ -131,7 +114,7 @@ public class Engine {
 	 *         introducido por el usuario
 	 */
 	public boolean comprobarColor(int _index, tColores _color) {
-		return secuenciaColores[_index] == _color;
+		return this.secuenciaColores[_index] == _color;
 
 	}
 
@@ -142,7 +125,7 @@ public class Engine {
 	 */
 	public void mostrarSecuencia(int _numero) {
 		for (int i = 0; i < _numero; i++) {
-			System.out.print(secuenciaColores[i] + " ");
+			System.out.print(this.secuenciaColores[i] + " ");
 		}
 
 	}
@@ -154,9 +137,9 @@ public class Engine {
 	 * @return
 	 */
 	public boolean usarAyuda(int _index) {
-		if (ayuda != 0) {
-			ayuda--;
-			System.out.println("El siguiente color es: " + secuenciaColores[_index] + " , te siguen quedando " + ayuda
+		if (this.ayuda > 0) {
+			this.ayuda--;
+			System.out.println("El siguiente color es: " + this.secuenciaColores[_index] + " , te siguen quedando " + ayuda
 					+ " ayudas");
 			return true;
 
@@ -171,6 +154,7 @@ public class Engine {
 	 * Metodo que controla el inicio del juego y las diferentes opciones disponibles
 	 */
 	public void start() {
+		int menu;
 		do {
 			System.out.println("[0]--- Salir");
 			System.out.println("[1]--- Jugar modo fácil");
@@ -183,12 +167,10 @@ public class Engine {
 				System.exit(0);
 				break;
 			case 1:
-				Engine jugar = new Engine();
-				jugar.play(tModo.Facil);
+				play(tModo.Facil);
 				break;
 			case 2:
-				Engine jugar2 = new Engine();
-				jugar2.play(tModo.Dificil);
+				play(tModo.Dificil);
 				break;
 			}
 		} while (menu != 0);
@@ -203,7 +185,6 @@ public class Engine {
 	 * @param modo es el modo de juego que elige el usuario en el metodo play
 	 */
 	public void play(tModo modo) {
-		Engine jugar3 = new Engine();
 		System.out.println("¡Bienvenido a Simón Dice!");
 		System.out.println("¿Cuál es tu nombre? ");
 		Jugador jugador = new Jugador(nombre);
@@ -211,77 +192,13 @@ public class Engine {
 		jugador.setNombre(nombre);
 		System.out.println("Hola " + jugador.getNombre() + " ,¿preparad@ para jugar?");
 		if (modo == tModo.Facil) {
-			int x = 0;
-			do {
-				generarSecuencia_facil(MAX_COLORES_SEQ);
-				while (x < MAX_COLORES_SEQ - 2 || !fallo) {
-
-					System.out.println("Pulse ENTER cuando esté listo... ¡SUERTE!");
-					new Scanner(System.in).nextLine();
-
-					for (int j = 0; j < 50; j++) {
-						System.out.println();
-					}
-					mostrarSecuencia(3 + x);
-					System.out.println();
-
-					System.out.println(" Memorice la secuencia, y cuando esté listo pulse ENTER...");
-					new Scanner(System.in).nextLine();
-
-					for (int j = 0; j < 50; j++) {
-						System.out.println();
-					}
-
-					System.out.println("Escriba la secuencia anterior en el orden correcto, por favor");
-					int y = 0;
-					while (y < (3 + x) && !fallo) {
-						System.out.println("¿Qué colores habían en la secuencia " + (x + 1) + " = ");
-						char tu_char = scanner.next().charAt(0);
-						tColores char_elegido = charToColor(tu_char);
-						boolean check = true;
-						while (check) {
-							if ((tu_char == 'x' || tu_char == 'X')) {
-								if (usarAyuda(y)) {
-									y++;
-									jugador.RestaPuntos(8);
-
-								}
-								check = false;
-							} else if (comprobarColor(y, char_elegido)) {
-								y++;
-								System.out.println("¡Correcto! Acertaste la secuencia");
-								jugador.SumaPuntos(2);
-								check = false;
-							} else {
-								System.out.println("¡Has perdido! la suerte no te acompañó, tenías un total de "
-										+ jugador.getPuntuacion(puntuacion) + " puntos");
-								fallo = true;
-								check = false;
-								jugar3.start();
-
-							}
-						}
-					}
-					jugador.SumaPuntos(5);
-					x++;
-				}
-				if (x == MAX_COLORES_SEQ - 2) {
-					jugador.SumaPuntos(40);
-					System.out.println("¡ENHORABUENA, HAS GANADO! Has conseguido un total de "
-							+ jugador.getPuntuacion(puntuacion) + " puntos");
-					jugar3.start();
-					for (int j = 0; j < 50; j++) {
-						System.out.println();
-					}
-				}
-				scanner.close();
-			} while (x < MAX_COLORES_SEQ && !fallo);
-
+			generarSecuencia(this.MAX_COLORES_FACIL);
 		} else {
+			generarSecuencia(this.MAX_COLORES_DIFICIL);
+		}
 			int x = 0;
 			do {
-				generarSecuencia_dificil(MAX_COLORES_SEQ);
-				while (x < MAX_COLORES_SEQ - 2 || !fallo) {
+				while (x < this.MAX_COLORES_SEQ - 2 || !this.fallo) {
 
 					System.out.println("Pulse ENTER cuando esté listo... ¡SUERTE!");
 					new Scanner(System.in).nextLine();
@@ -301,7 +218,7 @@ public class Engine {
 
 					System.out.println("Escriba la secuencia anterior en el orden correcto, por favor");
 					int y = 0;
-					while (y < (3 + x) && !fallo) {
+					while (y < (3 + x) && !this.fallo) {
 						System.out.println("¿Qué colores habían en la secuencia " + (x + 1) + " = ");
 						char tu_char = scanner.next().charAt(0);
 						tColores char_elegido = charToColor(tu_char);
@@ -316,36 +233,51 @@ public class Engine {
 							} else if (comprobarColor(y, char_elegido)) {
 								y++;
 								System.out.println("¡Correcto! Acertaste la secuencia");
-								jugador.SumaPuntos(4);
+								if(modo == tModo.Facil) {
+									jugador.SumaPuntos(2);
+								}else {
+									jugador.SumaPuntos(4);
+								}
+								
 								check = false;
 							} else {
 								System.out.println("¡Has perdido! la suerte no te acompañó, tenías un total de "
-										+ jugador.getPuntuacion(puntuacion) + " puntos");
-								fallo = true;
+										+ jugador.getPuntuacion(this.puntuacion) + " puntos");
+								this.fallo = true;
 								check = false;
-								jugar3.start();
+								start();
 
 							}
 						}
 
 					}
-					jugador.SumaPuntos(10);
+					if(modo == tModo.Facil) {
+						jugador.SumaPuntos(5);
+					}else {
+						jugador.SumaPuntos(10);
+					}
+					
 					x++;
 				}
-				if (x == MAX_COLORES_SEQ - 2) {
-					jugador.SumaPuntos(80);
+				if (x == this.MAX_COLORES_SEQ - 2) {
+					if(modo == tModo.Facil) {
+						jugador.SumaPuntos(40);
+					}else {
+						jugador.SumaPuntos(80);
+					}
+					
 					System.out.println("¡ENHORABUENA, HAS GANADO! Has conseguido un total de "
-							+ jugador.getPuntuacion(puntuacion) + " puntos");
-					jugar3.start();
+							+ jugador.getPuntuacion(this.puntuacion) + " puntos");
+					start();
 					for (int j = 0; j < 50; j++) {
 						System.out.println();
 					}
 				}
 
 				scanner.close();
-			} while (x < MAX_COLORES_SEQ && !fallo);
+			} while (x < this.MAX_COLORES_SEQ && !this.fallo);
 		}
 
-	}
+	
 
 }
