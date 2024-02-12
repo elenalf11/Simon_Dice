@@ -154,15 +154,15 @@ public class Engine {
 	 * @return
 	 */
 	public boolean usarAyuda(int _index) {
-		if (ayuda < 1) {
-			System.out.println("Lo siento, no tienes más ayudas");
-			return false;
-
-		} else {
-			ayuda -= 1;
+		if (ayuda != 0) {
+			ayuda--;
 			System.out.println("El siguiente color es: " + secuenciaColores[_index] + " , te siguen quedando " + ayuda
 					+ " ayudas");
 			return true;
+
+		} else {
+			System.out.println("Lo siento, no tienes más ayudas");
+			return false;
 		}
 
 	}
@@ -238,22 +238,28 @@ public class Engine {
 						System.out.println("¿Qué colores habían en la secuencia " + (x + 1) + " = ");
 						char tu_char = scanner.next().charAt(0);
 						tColores char_elegido = charToColor(tu_char);
-						if (tu_char == 'x' || tu_char == 'X' && ayuda > 0) {
-							y++;
-							usarAyuda(y);
-							jugador.RestaPuntos(8);
-						} else if (tu_char == 'x' || tu_char == 'X' && ayuda < 1) {
-							usarAyuda(y);
-						} else if (comprobarColor(y, char_elegido)) {
-							y++;
-							System.out.println("¡Correcto! Acertaste la secuencia");
-							jugador.SumaPuntos(2);
-						} else {
-							System.out.println("¡Has perdido! la suerte no te acompañó, tenías un total de "
-									+ jugador.getPuntuacion(puntuacion) + " puntos");
-							fallo = true;
-							jugar3.start();
+						boolean check = true;
+						while (check) {
+							if ((tu_char == 'x' || tu_char == 'X')) {
+								if (usarAyuda(y)) {
+									y++;
+									jugador.RestaPuntos(8);
 
+								}
+								check = false;
+							} else if (comprobarColor(y, char_elegido)) {
+								y++;
+								System.out.println("¡Correcto! Acertaste la secuencia");
+								jugador.SumaPuntos(2);
+								check = false;
+							} else {
+								System.out.println("¡Has perdido! la suerte no te acompañó, tenías un total de "
+										+ jugador.getPuntuacion(puntuacion) + " puntos");
+								fallo = true;
+								check = false;
+								jugar3.start();
+
+							}
 						}
 					}
 					jugador.SumaPuntos(5);
@@ -299,23 +305,27 @@ public class Engine {
 						System.out.println("¿Qué colores habían en la secuencia " + (x + 1) + " = ");
 						char tu_char = scanner.next().charAt(0);
 						tColores char_elegido = charToColor(tu_char);
+						boolean check = true;
+						while (check) {
+							if (tu_char == 'x' || tu_char == 'X') {
+								if (usarAyuda(y)) {
+									y++;
+									jugador.RestaPuntos(8);
+								}
+								check = false;
+							} else if (comprobarColor(y, char_elegido)) {
+								y++;
+								System.out.println("¡Correcto! Acertaste la secuencia");
+								jugador.SumaPuntos(4);
+								check = false;
+							} else {
+								System.out.println("¡Has perdido! la suerte no te acompañó, tenías un total de "
+										+ jugador.getPuntuacion(puntuacion) + " puntos");
+								fallo = true;
+								check = false;
+								jugar3.start();
 
-						if (tu_char == 'x' || tu_char == 'X' && ayuda > 0) {
-							y++;
-							usarAyuda(y);
-							jugador.RestaPuntos(8);
-						} else if (tu_char == 'x' || tu_char == 'X' && ayuda < 1) {
-							usarAyuda(y);
-						} else if (comprobarColor(y, char_elegido)) {
-							y++;
-							System.out.println("¡Correcto! Acertaste la secuencia");
-							jugador.SumaPuntos(4);
-						} else {
-							System.out.println("¡Has perdido! la suerte no te acompañó, tenías un total de "
-									+ jugador.getPuntuacion(puntuacion) + " puntos");
-							fallo = true;
-							jugar3.start();
-
+							}
 						}
 
 					}
