@@ -38,7 +38,7 @@ public class Jugador {
 	 * 
 	 * @return Retorna la puntuacion del usuario jugador
 	 */
-	public int getPuntuacion(int puntuacion) {
+	public int getPuntuacion() {
 		return this.puntuacion;
 	}
 
@@ -64,7 +64,10 @@ public class Jugador {
 	public int RestaPuntos (int puntosmenos) {
 		return this.puntuacion -= puntosmenos;
 	}
-	
+	/**
+	 * Metodo que obtiene la puntuacion total del jugador
+	 * @param puntuacion es la puntuacion total del jugador
+	 */
 	public void setPuntuacion(int puntuacion) {
 		this.puntuacion = puntuacion;
 	}

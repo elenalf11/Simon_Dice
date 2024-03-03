@@ -28,7 +28,15 @@ public class Record {
 	 * Método que ordena el ranking con el método del algoritmo de la burbuja
 	 */
 	public void ordenarRanking() {
-
+		for(int i = 0; i < this.cont; i++) {
+			for(int j = 0; j < (this.cont - i - 1); j++) {
+				if(this.jugadores[j].getPuntuacion() < this.jugadores[j + 1].getPuntuacion()) {
+					Jugador x = this.jugadores[j + 1];
+					this.jugadores[j + 1] = this.jugadores[j];
+					this.jugadores[j] = x;
+				}
+			}
+		}
 	}
 	/**
 	 * Método que muestra al jugador/es con la máxima puntuación
