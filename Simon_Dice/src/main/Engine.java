@@ -207,12 +207,13 @@ public class Engine {
 		int nSecuencia = 1;
 		int nColores = 3;
 		boolean fallo = false;
+		boolean acabar = false;
 		if (modo == tModo.Facil) {
 			generarSecuencia(this.MAX_COLORES_FACIL);
 		} else {
 			generarSecuencia(this.MAX_COLORES_DIFICIL);
 		}
-		while (nColores <= MAX_COLORES_SEQ && fallo == false) {
+		while (nColores <= MAX_COLORES_SEQ && fallo == false && acabar == false) {
 			System.out.println("Pulse ENTER cuando esté listo... ¡SUERTE!");
 			new Scanner(System.in).nextLine();
 
@@ -225,13 +226,13 @@ public class Engine {
 			System.out.println(" Memorice la secuencia, y cuando esté listo pulse ENTER...");
 			new Scanner(System.in).nextLine();
 
-			for (int j = 0; j < 50; j++) {
-				System.out.println();
-			}
+			//for (int j = 0; j < 50; j++) {
+				//System.out.println();
+			//}
 
 			System.out.println("Escriba la secuencia anterior en el orden correcto, por favor");
 			int y = 0;
-			while (y < nColores && fallo == false) {
+			while (y < nColores && fallo == false && acabar == false) {
 				System.out.println("¿Qué colores habían en la secuencia " + nSecuencia + " = ");
 				char tu_char = scanner.next().charAt(0);
 				tColores char_elegido = charToColor(tu_char);
@@ -258,6 +259,7 @@ public class Engine {
 								+ jugador.getPuntuacion() + " puntos");
 						fallo = true;
 						check = false;
+						acabar = true;
 					}
 				}
 			}
@@ -277,6 +279,7 @@ public class Engine {
 				}
 				System.out.println(
 						"¡ENHORABUENA, HAS GANADO! Has conseguido un total de " + jugador.getPuntuacion() + " puntos");
+				acabar = true;
 			}
 		}
 		return this.puntuacion;
