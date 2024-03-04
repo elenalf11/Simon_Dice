@@ -2,6 +2,8 @@ package main;
 
 /**
  * Clase Record
+ * 
+ * @author elena
  */
 public class Record {
 	private final int MAX_JUGADORES = 10;
@@ -63,6 +65,13 @@ public class Record {
 	 * Método que muestra al jugador/es con la máxima puntuación
 	 */
 	public void showBestPlayer() {
+		ordenarRanking();
+		for(int i = 0; i < this.jugadores.length; i++) {
+			if(this.jugadores[0].getPuntuacion() == this.jugadores[i].getPuntuacion()) {
+				System.out.println("Los mejores jugadores es " + this.jugadores[i] + " con una puntuación de " + this.jugadores[i].getPuntuacion());
+			}
+		}
+		
 		
 	}
 

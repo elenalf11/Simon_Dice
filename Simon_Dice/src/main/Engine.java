@@ -166,6 +166,7 @@ public class Engine {
 		System.out.println("¿Cuál es tu nombre? ");
 		String nombre = scanner.next();
 		jugador.setNombre(nombre);
+		rd.addPlayer(jugador);
 		int x = 0;
 		while (x == 0) {
 			System.out.println("Hola " + jugador.getNombre() + " ,¿qué desea hacer?");
@@ -188,7 +189,7 @@ public class Engine {
 				rd.showRanking();
 				break;
 			case 4:
-				System.out.println("El mejor jugador es...");
+				rd.showBestPlayer();
 				break;
 			default:
 				System.out.println("Ese número no representa ninguna opción, vuelva a intentarlo");
@@ -227,9 +228,9 @@ public class Engine {
 			System.out.println(" Memorice la secuencia, y cuando esté listo pulse ENTER...");
 			new Scanner(System.in).nextLine();
 
-			//for (int j = 0; j < 50; j++) {
-				//System.out.println();
-			//}
+			for (int j = 0; j < 50; j++) {
+				System.out.println();
+			}
 
 			System.out.println("Escriba la secuencia anterior en el orden correcto, por favor");
 			int y = 0;
