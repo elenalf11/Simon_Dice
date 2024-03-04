@@ -29,6 +29,7 @@ public class Engine {
 	String nombre;
 	private int ayuda = 3;
 	Jugador jugador = new Jugador(this.nombre, this.puntuacion);
+	Record rd = new Record();
 
 	/**
 	 * Este metodo relaciona el caracter que introduce el usuario con un color
@@ -184,7 +185,7 @@ public class Engine {
 
 				break;
 			case 3:
-				System.out.println("Top 10 jugadores");
+				rd.showRanking();
 				break;
 			case 4:
 				System.out.println("El mejor jugador es...");
