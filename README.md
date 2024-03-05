@@ -1,3 +1,6 @@
-# Simon_Dice
+# Simon_Dice 
 
- Programa creado en Java del juego Simón Dice
+En este repositorio está el juego **Simón Dice** creado en Java por *Elena López Félix 1ºDAM*. 
+----------------------------------------------------------------------------------------------
+**¿Qué contiene este proyecto?**
+
