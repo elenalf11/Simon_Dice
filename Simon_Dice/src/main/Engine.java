@@ -183,16 +183,39 @@ public class Engine {
 		String nombre = scanner.next();
 		jugador.setNombre(nombre);
 		rd.addPlayer(jugador);
+		
 		// Esto son algunos ejemplos para comprobar las opciones del metodo Record
-		Jugador j1 = new Jugador("pepe");
+		Jugador j1 = new Jugador("Pepe");
 		Jugador j2 = new Jugador ("Antonio");
 		Jugador j3 = new Jugador ("Paula");
+		Jugador j4 = new Jugador ("Leo");
+		Jugador j5 = new Jugador ("Maria");
+		Jugador j6 = new Jugador ("David");
+		Jugador j7 = new Jugador ("Alicia");
+		Jugador j8 = new Jugador ("Juan");
+		Jugador j9 = new Jugador ("Manuel");
+
 		j1.setPuntuacion(100);
-		j2.setPuntuacion(20);
-		j3.setPuntuacion(5);
+		j2.setPuntuacion(100);
+		j3.setPuntuacion(50);
+		j4.setPuntuacion(75);
+		j5.setPuntuacion(60);
+		j6.setPuntuacion(5);
+		j7.setPuntuacion(15);
+		j8.setPuntuacion(25);
+		j9.setPuntuacion(35);
+		
 		rd.addPlayer(j1);
 		rd.addPlayer(j2);
 		rd.addPlayer(j3);
+		rd.addPlayer(j4);
+		rd.addPlayer(j5);
+		rd.addPlayer(j6);
+		rd.addPlayer(j7);
+		rd.addPlayer(j8);
+		rd.addPlayer(j9);
+		
+		
 		int x = 0;
 		while (x == 0) {
 			System.out.println("Hola " + jugador.getNombre() + " ,¿qué desea hacer?");
