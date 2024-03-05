@@ -30,7 +30,7 @@ public class Record {
 	public void showRanking() {
 		ordenarRanking();
 		for (int i = 0; i < this.cont; i++) {
-			System.out.println(i + 1 + "- " + this.jugadores[i].getNombre() + " = " + this.jugadores[i].getPuntuacion());
+			System.out.println(i + 1 + "- " + this.jugadores[i].getNombre() + " = " + this.jugadores[i].getPuntuacion() + " puntos");
 		}
 	}
 
@@ -59,7 +59,7 @@ public class Record {
 		ordenarRanking();
 		for(int i = 0; i < this.cont; i++) {
 			if(this.jugadores[0].getPuntuacion() == this.jugadores[i].getPuntuacion()) {
-				System.out.println("El mejor(es) jugador(es) es:" + this.jugadores[i].getNombre() + " con una puntuación de " + this.jugadores[i].getPuntuacion());
+				System.out.println("El mejor(es) jugador(es) es:" + this.jugadores[i].getNombre() + " con  " + this.jugadores[i].getPuntuacion() + " puntos");
 			}
 		}
 		

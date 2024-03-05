@@ -28,7 +28,7 @@ public class Engine {
 	private int puntuacion = 0;
 	String nombre;
 	private int ayuda = 3;
-	Jugador jugador = new Jugador(this.nombre, this.puntuacion);
+	Jugador jugador = new Jugador(this.nombre);
 	Record rd = new Record();
 
 	/**
@@ -184,10 +184,10 @@ public class Engine {
 		jugador.setNombre(nombre);
 		rd.addPlayer(jugador);
 		// Esto son algunos ejemplos para comprobar las opciones del metodo Record
-		Jugador j1 = new Jugador("pepe", 380);
-		Jugador j2 = new Jugador ("Antonio", 20);
-		Jugador j3 = new Jugador ("Paula", 5);
-		j1.setPuntuacion(380);
+		Jugador j1 = new Jugador("pepe");
+		Jugador j2 = new Jugador ("Antonio");
+		Jugador j3 = new Jugador ("Paula");
+		j1.setPuntuacion(100);
 		j2.setPuntuacion(20);
 		j3.setPuntuacion(5);
 		rd.addPlayer(j1);
