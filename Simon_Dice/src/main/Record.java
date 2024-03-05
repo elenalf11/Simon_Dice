@@ -11,44 +11,33 @@ public class Record {
 	private int cont = 0;
 	
 	/**
-	 * Metodo para añadir jugadores al array jugadores
+	 * Metodo para anadir jugadores al array jugadores
+	 * 
+	 * Tiene una complejidad de 0(1) ya que no variara en funcion del tamano del dato
+	 * 
 	 * @param jugador es el jugador que tenemos que añadir a la array
 	 */
 	public void addPlayer(Jugador jugador) {
-		int x = 0;
-		for (int i = 0; i < this.cont; i++) {
-			if(this.jugadores[i].getPuntuacion() < this.jugadores[x].getPuntuacion()) {
-				x = i;
-			}
-		}
-		if(this.cont < this.MAX_JUGADORES) {
-			this.jugadores[this.cont] = jugador;
-			this.cont++;
-		}else {
-			if(jugador.getPuntuacion() > this.jugadores[x].getPuntuacion()) {
-				this.jugadores[x] = jugador;
-			}
-		}
+		this.jugadores[this.cont] = jugador;
+		this.cont++;
 	}
 
 	/**
 	 * Metodo que muestra el ranking de los top 10 mejores jugadores
+	 * 
+	 * Tiene una complejidad de 0(n) donde n es this.cont (equivale al tamano ocupado del array)
 	 */
 	public void showRanking() {
-		int x = 0;
-		if (this.cont < this.MAX_JUGADORES) {
-			x = this.cont;
-		}else {
-			x = this.MAX_JUGADORES;
-		}
 		ordenarRanking();
-		for (int i = 0; i < x; i++) {
+		for (int i = 0; i < this.cont; i++) {
 			System.out.println(i + 1 + "- " + this.jugadores[i].getNombre() + " = " + this.jugadores[i].getPuntuacion());
 		}
 	}
 
 	/**
-	 * Método que ordena el ranking con el método del algoritmo de la burbuja
+	 * Metodo que ordena el ranking con el metodo del algoritmo de la burbuja
+	 * 
+	 * Tiene una complejidad de 0(n2) ya que se realizan dos busquedas simultaneamente
 	 */
 	public void ordenarRanking() {
 		for(int i = 0; i < this.cont; i++) {
@@ -62,13 +51,15 @@ public class Record {
 		}
 	}
 	/**
-	 * Método que muestra al jugador/es con la máxima puntuación
+	 * Metodo que muestra al jugador/es con la maxima puntuacion
+	 * 
+	 * Tiene una complejidad de 0(n) donde n es this.cont (equivale al tamano ocupado del array)
 	 */
 	public void showBestPlayer() {
 		ordenarRanking();
-		for(int i = 0; i < this.jugadores.length; i++) {
+		for(int i = 0; i < this.cont; i++) {
 			if(this.jugadores[0].getPuntuacion() == this.jugadores[i].getPuntuacion()) {
-				System.out.println("Los mejores jugadores es " + this.jugadores[i] + " con una puntuación de " + this.jugadores[i].getPuntuacion());
+				System.out.println("El mejor(es) jugador(es) es:" + this.jugadores[i].getNombre() + " con una puntuación de " + this.jugadores[i].getPuntuacion());
 			}
 		}
 		

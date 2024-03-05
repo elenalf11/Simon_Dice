@@ -35,6 +35,8 @@ public class Engine {
 	 * Este metodo relaciona el caracter que introduce el usuario con un color
 	 * incluido en el enum tColores.
 	 * 
+	 * Tiene una complejidad de 0(1) ya que no variara en funcion del tamano del dato
+	 * 
 	 * @param _color Este parametro representa el caracter del color introducido por
 	 *               el usuario.
 	 * @return El metodo retorna el char introducido convertido en el tipo tColores.
@@ -65,6 +67,8 @@ public class Engine {
 	 * Metodo que relaciona un numero(posicion del enum tColores) con un color
 	 * incluido en el enum de tColores.
 	 * 
+	 * Tiene una complejidad de 0(1) ya que no variara en funcion del tamano del dato.
+	 * 
 	 * @param _numero Este parametro representa un numero entero.
 	 * @return El metodo retorna un numero entero convertido en un tipo tColores.
 	 *         (se convierte en un color del enum)
@@ -92,6 +96,8 @@ public class Engine {
 	/**
 	 * Metodo que genera el array de tipo tColores.
 	 * 
+	 * Tiene una complejidad de 0(n) donde n es el tamano del array
+	 * 
 	 * @param _numColores_dificil representa el numero de colores que tiene el tipo
 	 *                            enumerado tColores. En este caso es el referente
 	 *                            al modo dificil por lo que su valor es 6
@@ -108,6 +114,8 @@ public class Engine {
 	 * Metodo que compara si el color que ha puesto el usuario es el mismo que pone
 	 * el programa
 	 * 
+	 * Tiene una complejidad de 0(1) ya que no variara en funcion del tamano del dato
+	 * 
 	 * @param _index indice que el color ocupa dentro del array secuenciaColores.
 	 * @param _color color introducido por el usuario.
 	 * @return Retorna que el color en la posicion _index es igual al _color
@@ -121,6 +129,8 @@ public class Engine {
 	/**
 	 * Metodo que imprime la secuencia creada en el metodo generarSecuencia
 	 * 
+	 * Tiene una complejidad de 0(n) donde n es el numero de la secuencia actual
+	 * 
 	 * @param _numero numero de la secuencia actual.
 	 */
 	public void mostrarSecuencia(int _numero) {
@@ -132,6 +142,8 @@ public class Engine {
 
 	/**
 	 * Metodo que permite utilizar las ayudas disponibles.
+	 * 
+	 * Tiene una complejidad de 0(1) ya que no variara en funcion del tamano del dato
 	 * 
 	 * @param _index indice del color que se desea comprobar
 	 * @return
@@ -149,7 +161,9 @@ public class Engine {
 		}
 
 	}
-
+	/**
+	 * Metodo que te muestra las opciones del menu
+	 */
 	public void menu() {
 		System.out.println("[0]--- Salir");
 		System.out.println("[1]--- Jugar modo fácil");
@@ -160,6 +174,8 @@ public class Engine {
 
 	/**
 	 * Metodo que controla el inicio del juego y las diferentes opciones disponibles
+	 * 
+	 * Tiene una complejidad de 0(1) ya que no variara en funcion del tamano del dato
 	 */
 	public void start() {
 		System.out.println("¡Bienvenido a Simón Dice!");
@@ -167,6 +183,16 @@ public class Engine {
 		String nombre = scanner.next();
 		jugador.setNombre(nombre);
 		rd.addPlayer(jugador);
+		// Esto son algunos ejemplos para comprobar las opciones del metodo Record
+		Jugador j1 = new Jugador("pepe", 380);
+		Jugador j2 = new Jugador ("Antonio", 20);
+		Jugador j3 = new Jugador ("Paula", 5);
+		j1.setPuntuacion(380);
+		j2.setPuntuacion(20);
+		j3.setPuntuacion(5);
+		rd.addPlayer(j1);
+		rd.addPlayer(j2);
+		rd.addPlayer(j3);
 		int x = 0;
 		while (x == 0) {
 			System.out.println("Hola " + jugador.getNombre() + " ,¿qué desea hacer?");
@@ -202,6 +228,8 @@ public class Engine {
 	 * Metodo que controla todo el flujo del juego, empezando por el control del
 	 * menu, limitar la impresion de la secuencia de colores y el comparador para
 	 * saber si se escribe correctamente la secuencia.
+	 * 
+	 * Tiene una complejidad de 0(n) donde n es MAX_COLORES_SEQ
 	 * 
 	 * @param modo es el modo de juego que elige el usuario en el metodo play
 	 */
