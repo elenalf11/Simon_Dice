@@ -6,9 +6,16 @@ package main;
  * @author elena
  */
 public class Record {
-	private final int MAX_JUGADORES = 10;
-	private Jugador [] jugadores = new Jugador[MAX_JUGADORES];
-	private int cont = 0;
+	private final int MAX_JUGADORES;
+	private Jugador [] jugadores;
+	private int cont;
+	
+	public Record() {
+		this.cont = 0;
+		this.MAX_JUGADORES = 10;
+		this.jugadores = new Jugador [this.MAX_JUGADORES];
+	}
+	
 	
 	/**
 	 * Metodo para anadir jugadores al array jugadores
