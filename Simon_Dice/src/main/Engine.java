@@ -151,7 +151,7 @@ public class Engine {
 	public boolean usarAyuda(int _index) {
 		if (this.ayuda > 0) {
 			this.ayuda--;
-			System.out.println("El siguiente color es: " + this.secuenciaColores[_index] + " , te siguen quedando "
+			System.out.println("El siguiente color era: " + this.secuenciaColores[_index] + " , te siguen quedando "
 					+ this.ayuda + " ayudas");
 			return true;
 

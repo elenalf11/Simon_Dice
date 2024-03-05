@@ -18,8 +18,13 @@ public class Record {
 	 * @param jugador es el jugador que tenemos que añadir a la array
 	 */
 	public void addPlayer(Jugador jugador) {
-		this.jugadores[this.cont] = jugador;
-		this.cont++;
+		if(this.cont == this.jugadores.length) {
+			System.out.println("No se permiten más jugadores, lo siento");
+		}else {
+			this.jugadores[this.cont] = jugador;
+			this.cont++;
+		}
+		
 	}
 
 	/**
