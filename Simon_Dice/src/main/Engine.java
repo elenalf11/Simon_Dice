@@ -20,22 +20,37 @@ public class Engine {
 	}
 
 	Scanner scanner = new Scanner(System.in);
-	private final int MAX_COLORES_SEQ = 15;
-	private final int MAX_COLORES_FACIL = 4;
-	private final int MAX_COLORES_DIFICIL = 6;
-	private tColores[] secuenciaColores = new tColores[MAX_COLORES_SEQ];
+	private final int MAX_COLORES_SEQ;
+	private final int MAX_COLORES_FACIL;
+	private final int MAX_COLORES_DIFICIL;
+	private tColores[] secuenciaColores;
 	tModo[] modo = new tModo[2];
-	private int puntuacion = 0;
+	private int puntuacion;
 	String nombre;
-	private int ayuda = 3;
-	Jugador jugador = new Jugador(this.nombre);
-	Record rd = new Record();
+	private int ayuda;
+	Jugador jugador;
+	Record rd;
+
+	/**
+	 * Constructora
+	 */
+	public Engine() {
+		this.MAX_COLORES_SEQ = 15;
+		this.MAX_COLORES_FACIL = 4;
+		this.MAX_COLORES_DIFICIL = 6;
+		this.puntuacion = 0;
+		this.ayuda = 3;
+		this.secuenciaColores = new tColores[this.MAX_COLORES_SEQ];
+		this.jugador = new Jugador(this.nombre);
+		this.rd = new Record();
+	}
 
 	/**
 	 * Este metodo relaciona el caracter que introduce el usuario con un color
 	 * incluido en el enum tColores.
 	 * 
-	 * Tiene una complejidad de 0(1) ya que no variara en funcion del tamano del dato
+	 * Tiene una complejidad de 0(1) ya que no variara en funcion del tamano del
+	 * dato
 	 * 
 	 * @param _color Este parametro representa el caracter del color introducido por
 	 *               el usuario.
@@ -67,7 +82,8 @@ public class Engine {
 	 * Metodo que relaciona un numero(posicion del enum tColores) con un color
 	 * incluido en el enum de tColores.
 	 * 
-	 * Tiene una complejidad de 0(1) ya que no variara en funcion del tamano del dato.
+	 * Tiene una complejidad de 0(1) ya que no variara en funcion del tamano del
+	 * dato.
 	 * 
 	 * @param _numero Este parametro representa un numero entero.
 	 * @return El metodo retorna un numero entero convertido en un tipo tColores.
@@ -114,7 +130,8 @@ public class Engine {
 	 * Metodo que compara si el color que ha puesto el usuario es el mismo que pone
 	 * el programa
 	 * 
-	 * Tiene una complejidad de 0(1) ya que no variara en funcion del tamano del dato
+	 * Tiene una complejidad de 0(1) ya que no variara en funcion del tamano del
+	 * dato
 	 * 
 	 * @param _index indice que el color ocupa dentro del array secuenciaColores.
 	 * @param _color color introducido por el usuario.
@@ -143,7 +160,8 @@ public class Engine {
 	/**
 	 * Metodo que permite utilizar las ayudas disponibles.
 	 * 
-	 * Tiene una complejidad de 0(1) ya que no variara en funcion del tamano del dato
+	 * Tiene una complejidad de 0(1) ya que no variara en funcion del tamano del
+	 * dato
 	 * 
 	 * @param _index indice del color que se desea comprobar
 	 * @return
@@ -161,6 +179,7 @@ public class Engine {
 		}
 
 	}
+
 	/**
 	 * Metodo que te muestra las opciones del menu
 	 */
@@ -170,12 +189,14 @@ public class Engine {
 		System.out.println("[2]--- Jugar modo difícil");
 		System.out.println("[3]--- Ver 10 mejores jugadores");
 		System.out.println("[4]--- Ver jugador(es) con la puntuación más alta");
+		System.out.println("[5]--- Buscador de jugadores");
 	}
 
 	/**
 	 * Metodo que controla el inicio del juego y las diferentes opciones disponibles
 	 * 
-	 * Tiene una complejidad de 0(1) ya que no variara en funcion del tamano del dato
+	 * Tiene una complejidad de 0(1) ya que no variara en funcion del tamano del
+	 * dato
 	 */
 	public void start() {
 		System.out.println("¡Bienvenido a Simón Dice!");
@@ -183,28 +204,28 @@ public class Engine {
 		String nombre = scanner.next();
 		jugador.setNombre(nombre);
 		rd.addPlayer(jugador);
-		
+
 		// Esto son algunos ejemplos para comprobar las opciones del metodo Record
 		Jugador j1 = new Jugador("Pepe");
-		Jugador j2 = new Jugador ("Antonio");
-		Jugador j3 = new Jugador ("Paula");
-		Jugador j4 = new Jugador ("Leo");
-		Jugador j5 = new Jugador ("Maria");
-		Jugador j6 = new Jugador ("David");
-		Jugador j7 = new Jugador ("Alicia");
-		Jugador j8 = new Jugador ("Juan");
-		Jugador j9 = new Jugador ("Manuel");
+		Jugador j2 = new Jugador("Antonio");
+		Jugador j3 = new Jugador("Paula");
+		Jugador j4 = new Jugador("Leo");
+		Jugador j5 = new Jugador("Maria");
+		Jugador j6 = new Jugador("David");
+		Jugador j7 = new Jugador("Alicia");
+		Jugador j8 = new Jugador("Juan");
+		Jugador j9 = new Jugador("Manuel");
 
 		j1.setPuntuacion(100);
 		j2.setPuntuacion(100);
-		j3.setPuntuacion(50);
-		j4.setPuntuacion(75);
+		j3.setPuntuacion(100);
+		j4.setPuntuacion(100);
 		j5.setPuntuacion(60);
 		j6.setPuntuacion(5);
 		j7.setPuntuacion(15);
 		j8.setPuntuacion(25);
 		j9.setPuntuacion(35);
-		
+
 		rd.addPlayer(j1);
 		rd.addPlayer(j2);
 		rd.addPlayer(j3);
@@ -214,8 +235,7 @@ public class Engine {
 		rd.addPlayer(j7);
 		rd.addPlayer(j8);
 		rd.addPlayer(j9);
-		
-		
+
 		int x = 0;
 		while (x == 0) {
 			System.out.println("Hola " + jugador.getNombre() + " ,¿qué desea hacer?");
@@ -228,17 +248,18 @@ public class Engine {
 				break;
 			case 1:
 				play(tModo.Facil);
-
 				break;
 			case 2:
 				play(tModo.Dificil);
-
 				break;
 			case 3:
 				rd.showRanking();
 				break;
 			case 4:
 				rd.showBestPlayer();
+				break;
+			case 5:
+				rd.buscarJugador();
 				break;
 			default:
 				System.out.println("Ese número no representa ninguna opción, vuelva a intentarlo");
