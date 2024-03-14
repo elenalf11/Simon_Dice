@@ -33,7 +33,7 @@ public class CustomReadFile extends FileReader implements ICustomReadFile {
 		try {
 			this.close();
 		} catch (IOException e) {
-			System.out.println("¡Oh!, ha ocurrido un error inesperado");
+			System.out.println("Excepción capturada en el método CloseReadFile en la clase CustomReadFile");
 		}
 
 	}
@@ -46,7 +46,7 @@ public class CustomReadFile extends FileReader implements ICustomReadFile {
 				this.arrayList.add(jr);
 			}
 		} catch (Exception e) {
-			System.out.println("¡Oh!, ha ocurrido un error inesperado");
+			System.out.println("Excepción capturada en el método LeerJugadores en la clase CustomReadFile");
 		}
 		return this.arrayList;
 	}

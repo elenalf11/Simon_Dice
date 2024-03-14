@@ -1,6 +1,7 @@
 package main;
 
 import java.util.Scanner;
+import java.io.FileNotFoundException;
 import java.util.Random;
 
 /**
@@ -34,7 +35,7 @@ public class Engine {
 	/**
 	 * Constructora
 	 */
-	public Engine() {
+	public Engine(){
 		this.MAX_COLORES_SEQ = 15;
 		this.MAX_COLORES_FACIL = 4;
 		this.MAX_COLORES_DIFICIL = 6;

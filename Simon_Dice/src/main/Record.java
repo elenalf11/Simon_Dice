@@ -17,6 +17,7 @@ public class Record {
 	private Jugador[] jugadores;
 	private int cont;
 	private int ranking;
+	CustomReadFile crf;
 
 
 	/**
@@ -59,7 +60,7 @@ public class Record {
 		ordenarRanking();
 		cargarRanking();
 		int i = 0;
-		while(i < this.ranking) {
+		while(i < this.ranking && i < this.cont) {
 			System.out.println(i + 1 + "- " + this.jugadores[i].getNombre() + " = " + this.jugadores[i].getPuntuacion()
 					+ " puntos");
 			i++;
