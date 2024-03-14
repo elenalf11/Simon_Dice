@@ -1,6 +1,8 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+import files.CustomReadFile;
 
 /**
  * Clase Record
@@ -13,6 +15,7 @@ public class Record {
 	private int cont;
 	private int ranking;
 
+
 	/**
 	 * Constructora
 	 */
@@ -21,6 +24,7 @@ public class Record {
 		this.MAX_JUGADORES = 10;
 		this.jugadores = new Jugador[this.MAX_JUGADORES];
 		this.ranking = 10;
+
 	}
 
 	/**
@@ -116,6 +120,13 @@ public class Record {
 	 */
 	
 	public void cargarRanking() {
+		CustomReadFile crf = new CustomReadFile();
+		ArrayList<Jugador> arrayList = crf.LeerJugadores();
+		for(int i = 0; i < this.MAX_JUGADORES; i++) {
+			for(int j = 0; j < this.cont; j++) {
+				this.jugadores[j] = arrayList.get(i);
+			}
+		}
 		//Llama a LeerJugadores
 	}
 	

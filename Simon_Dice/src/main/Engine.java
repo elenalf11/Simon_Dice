@@ -41,7 +41,7 @@ public class Engine {
 		this.puntuacion = 0;
 		this.ayuda = 3;
 		this.secuenciaColores = new tColores[this.MAX_COLORES_SEQ];
-		this.jugador = new Jugador(this.nombre);
+		this.jugador = new Jugador(this.nombre, this.puntuacion);
 		this.rd = new Record();
 	}
 
@@ -206,15 +206,15 @@ public class Engine {
 		rd.addPlayer(jugador);
 
 		// Esto son algunos ejemplos para comprobar las opciones del metodo Record
-		Jugador j1 = new Jugador("Pepe");
-		Jugador j2 = new Jugador("Antonio");
-		Jugador j3 = new Jugador("Paula");
-		Jugador j4 = new Jugador("Leo");
-		Jugador j5 = new Jugador("Maria");
-		Jugador j6 = new Jugador("David");
-		Jugador j7 = new Jugador("Alicia");
-		Jugador j8 = new Jugador("Juan");
-		Jugador j9 = new Jugador("Manuel");
+		Jugador j1 = new Jugador("Pepe", 100);
+		Jugador j2 = new Jugador("Antonio", 100);
+		Jugador j3 = new Jugador("Paula", 100);
+		Jugador j4 = new Jugador("Leo", 100);
+		Jugador j5 = new Jugador("Maria", 60);
+		Jugador j6 = new Jugador("David", 5);
+		Jugador j7 = new Jugador("Alicia", 15);
+		Jugador j8 = new Jugador("Juan", 25);
+		Jugador j9 = new Jugador("Manuel", 35);
 
 		j1.setPuntuacion(100);
 		j2.setPuntuacion(100);

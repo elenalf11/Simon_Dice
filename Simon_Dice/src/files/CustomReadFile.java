@@ -22,7 +22,7 @@ public class CustomReadFile extends FileReader implements ICustomReadFile {
 		super(path);
 		this.sc = new Scanner(new FileReader("./src/data/top.txt"));
 		this.arrayList = new ArrayList<Jugador>();
-		this.jr = new Jugador(this.nombre);
+		this.jr = new Jugador(this.nombre, this.puntos);
 		this.puntos = 0;
 		this.nombre = nombre;
 
@@ -44,7 +44,7 @@ public class CustomReadFile extends FileReader implements ICustomReadFile {
 			while(this.sc.hasNextLine()) {
 				this.puntos = this.sc.nextInt();
 				this.nombre = this.sc.next();
-				this.jr = new Jugador(this.nombre);
+				this.jr = new Jugador(this.nombre, this.puntos);
 				this.arrayList.add(jr);
 			}
 		} catch (Exception e) {

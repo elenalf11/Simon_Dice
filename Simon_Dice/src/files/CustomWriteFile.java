@@ -9,7 +9,7 @@ public class CustomWriteFile extends FileWriter implements ICustomWriteFile{
 	private Scanner sc;
 	public CustomWriteFile(String path) throws IOException {
 		super(path);
-		this.sc = new Scanner (this);
+		this.sc = new Scanner (new FileWriter("./src/data/top.txt"));
 
 	}
 	@Override
