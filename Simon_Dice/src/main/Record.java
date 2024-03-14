@@ -1,9 +1,11 @@
 package main;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import files.CustomReadFile;
+import files.CustomWriteFile;
 
 /**
  * Clase Record
@@ -55,11 +57,14 @@ public class Record {
 	 */
 	public void showRanking() {
 		ordenarRanking();
-		for (int i = 0; i < this.cont; i++) {
+		cargarRanking();
+		int i = 0;
+		while(i < this.ranking) {
 			System.out.println(i + 1 + "- " + this.jugadores[i].getNombre() + " = " + this.jugadores[i].getPuntuacion()
 					+ " puntos");
+			i++;
 		}
-		cargarRanking();
+		
 	}
 
 	/**
@@ -147,7 +152,17 @@ public class Record {
 	 */
 	
 	public void escribirRanking() {
-		
+		String file = "./src/data/top.txt";
+		try {
+			CustomWriteFile escribir = new CustomWriteFile(file);
+			for(int i = 0; i < this.cont; i++) {
+				String cadena = this.jugadores[i].getNombre();
+				escribir.write(cadena);
+			}	
+		} catch (IOException e) {
+			System.out.println("Excepción capturada en el método escribirRanking en la clase Record");
+		}
+	
 	}
 
 }

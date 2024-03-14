@@ -42,9 +42,7 @@ public class CustomReadFile extends FileReader implements ICustomReadFile {
 	public ArrayList LeerJugadores() {
 		try {
 			while(this.sc.hasNextLine()) {
-				this.puntos = this.sc.nextInt();
-				this.nombre = this.sc.next();
-				this.jr = new Jugador(this.nombre, this.puntos);
+				this.jr = new Jugador(this.sc.next(), this.sc.nextInt());
 				this.arrayList.add(jr);
 			}
 		} catch (Exception e) {

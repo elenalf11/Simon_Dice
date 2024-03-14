@@ -223,13 +223,16 @@ public class Engine {
 				play(tModo.Dificil);
 				break;
 			case 3:
-				rd.showRanking();
+				this.rd.ordenarRanking();
+				this.rd.showRanking();
 				break;
 			case 4:
-				rd.showBestPlayer();
+				this.rd.ordenarRanking();
+				this.rd.showBestPlayer();
 				break;
 			case 5:
-				rd.buscarJugador();
+				this.rd.ordenarRanking();
+				this.rd.buscarJugador();
 				break;
 			default:
 				System.out.println("Ese número no representa ninguna opción, vuelva a intentarlo");
