@@ -14,11 +14,19 @@ public class CustomWriteFile extends FileWriter implements ICustomWriteFile{
 	}
 	@Override
 	public void WriteFile(String chain) {
-		this.write(null);
+		try {
+			this.write(chain);
+		} catch (IOException e) {
+			System.out.println("Excepción capturada en el método WriteFile en la clase CustomWriteFile");
+		}
 	}
 	@Override
 	public void CloseWriteFile() {
-		
+		try {
+			this.close();
+		} catch (IOException e) {			
+			System.out.println("Excepción capturada en el método CloseWriteFile en la clase CustomWriteFile");
+		}
 	}
 	/**
 	 *  - void CloseWriteFile(): pertenece a la clase CustomWriteFile(cierra el fichero),

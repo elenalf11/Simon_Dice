@@ -1,5 +1,6 @@
 package main;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import files.CustomReadFile;
@@ -54,10 +55,11 @@ public class Record {
 	 */
 	public void showRanking() {
 		ordenarRanking();
-		for (int i = 0; i < this.ranking; i++) {
+		for (int i = 0; i < this.cont; i++) {
 			System.out.println(i + 1 + "- " + this.jugadores[i].getNombre() + " = " + this.jugadores[i].getPuntuacion()
 					+ " puntos");
 		}
+		cargarRanking();
 	}
 
 	/**
@@ -120,13 +122,22 @@ public class Record {
 	 */
 	
 	public void cargarRanking() {
-		CustomReadFile crf = new CustomReadFile();
-		ArrayList<Jugador> arrayList = crf.LeerJugadores();
-		for(int i = 0; i < this.MAX_JUGADORES; i++) {
-			for(int j = 0; j < this.cont; j++) {
-				this.jugadores[j] = arrayList.get(i);
+		String file = "./src/data/top.txt";
+		CustomReadFile crf;
+		try {
+			crf = new CustomReadFile(file);
+			ArrayList<Jugador> arrayList = crf.LeerJugadores();
+			for(int i = 0; i < this.cont; i++) {
+				arrayList.add(jugadores[i]);
 			}
+			arrayList.sort(null);
+			System.out.println("El ranking actual es " + arrayList);
+		} catch (FileNotFoundException e) {	
+			System.out.println("Excepción capturada en el método cargarRanking en la clase Record");
 		}
+		
+		
+		
 		//Llama a LeerJugadores
 	}
 	

@@ -205,36 +205,6 @@ public class Engine {
 		jugador.setNombre(nombre);
 		rd.addPlayer(jugador);
 
-		// Esto son algunos ejemplos para comprobar las opciones del metodo Record
-		Jugador j1 = new Jugador("Pepe", 100);
-		Jugador j2 = new Jugador("Antonio", 100);
-		Jugador j3 = new Jugador("Paula", 100);
-		Jugador j4 = new Jugador("Leo", 100);
-		Jugador j5 = new Jugador("Maria", 60);
-		Jugador j6 = new Jugador("David", 5);
-		Jugador j7 = new Jugador("Alicia", 15);
-		Jugador j8 = new Jugador("Juan", 25);
-		Jugador j9 = new Jugador("Manuel", 35);
-
-		j1.setPuntuacion(100);
-		j2.setPuntuacion(100);
-		j3.setPuntuacion(100);
-		j4.setPuntuacion(100);
-		j5.setPuntuacion(60);
-		j6.setPuntuacion(5);
-		j7.setPuntuacion(15);
-		j8.setPuntuacion(25);
-		j9.setPuntuacion(35);
-
-		rd.addPlayer(j1);
-		rd.addPlayer(j2);
-		rd.addPlayer(j3);
-		rd.addPlayer(j4);
-		rd.addPlayer(j5);
-		rd.addPlayer(j6);
-		rd.addPlayer(j7);
-		rd.addPlayer(j8);
-		rd.addPlayer(j9);
 
 		int x = 0;
 		while (x == 0) {
