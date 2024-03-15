@@ -10,6 +10,6 @@ Este proyecto está compuesto por 3 paquetes:
 El código implementa <b>interfaces</b>, <b>manejo de excepciones</b>, <b>ficheros</b> y clases
 <hr>
 <h2>Funcionamiento</h2>
-<image src = ""C:\Users\elena\OneDrive\Imágenes\Capturas de pantalla\Captura de pantalla 2024-03-15 160708.png" >
+<image src = ""C:\Users\elena\Desktop\1ºDAM\PROGRAMACIÓN\1º TRIMESTRE\SIMON DICE\Simon_Dice\Simon_Dice\media\foto1.png"" >
 
 
