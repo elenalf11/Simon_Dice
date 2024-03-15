@@ -60,11 +60,16 @@ public class Record {
 	 * ocupado del array)
 	 */
 	public void showRanking() {
-		cargarRanking();
-		ordenarRanking();
-		for(int i = 0; i < this.arrayList.size(); i++) {
-			System.out.println(i + 1 + " - " + this.arrayList.get(i).getNombre() + " = " + this.arrayList.get(i).getPuntuacion());
+		try {
+			cargarRanking();
+			ordenarRanking();
+			for(int i = 0; i < this.ranking; i++) {
+				System.out.println(i + " - " + this.arrayList.get(i).getNombre() + " = " + this.arrayList.get(i).getPuntuacion());
+			}
+		}catch(Exception e) {
+			System.out.println("Excepción capturada en el método showRanking en la clase Record");
 		}
+		
 		
 
 	}
