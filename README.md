@@ -7,7 +7,6 @@ Este proyecto está compuesto por 3 paquetes:
 <li> Paquete <i>data</i> 📃</li>
 <li> Paquete <i>files</i> 🗂️</li>
 <li> Paquete <i>main</i> </li>
-<image src = ".\media\foto1.png" >
 El código implementa <b>interfaces</b>, <b>manejo de excepciones</b>, <b>ficheros</b> y clases
 <hr>
 <h2>Funcionamiento</h2>
