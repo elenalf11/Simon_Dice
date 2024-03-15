@@ -40,7 +40,7 @@ public class Record {
 	 * Tiene una complejidad de 0(1) ya que no variara en funcion del tamano del
 	 * dato
 	 * 
-	 * @param jugador es el jugador que tenemos que añadir a la array
+	 * @param jugador es el jugador que tenemos que anadir a la array
 	 */
 	public void addPlayer(Jugador jugador) {
 		if (this.cont < this.MAX_JUGADORES) {
@@ -104,7 +104,7 @@ public class Record {
 	}
 
 	/**
-	 * Método para buscar a los jugadores por su nombre
+	 * Metodo para buscar a los jugadores por su nombre
 	 */
 	public void buscarJugador() {
 		Scanner sc = new Scanner(System.in);
@@ -112,9 +112,9 @@ public class Record {
 		String buscar = sc.next();
 		int i = 0;
 		while (i < this.cont) {
-			if (buscar == this.jugadores[i].getNombre()) {
-				System.out.println("El jugador " + this.jugadores[i].getNombre() + " tiene una puntuación de "
-						+ this.jugadores[i].getPuntuacion());
+			if (buscar == this.arrayList.get(i).getNombre()) {
+				System.out.println("El jugador " + this.arrayList.get(i).getNombre() + " tiene una puntuación de "
+						+ this.arrayList.get(i).getPuntuacion());
 			}
 			i++;
 		}

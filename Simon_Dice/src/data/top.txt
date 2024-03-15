@@ -7,4 +7,3 @@ Paula 400
 Laura 400
 Andres 90
 David 100
-
