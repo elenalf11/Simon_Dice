@@ -7,6 +7,6 @@ Este proyecto está compuesto por 3 paquetes:
 <li> Paquete <i>data</i> 📃</li>
 <li> Paquete <i>files</i> 🗂️</li>
 <li> Paquete <i>main</i> </li>
-![foto1](foto1.png)
+![foto1](./foto1.png)
 
 
