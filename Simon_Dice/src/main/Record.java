@@ -44,11 +44,11 @@ public class Record {
 	 */
 	public void addPlayer(Jugador jugador) {
 		if (this.cont < this.MAX_JUGADORES) {
-			this.jugadores[this.cont] = jugador;
-			this.cont++;
+			this.arrayList.add(jugador);
 
 		} else {
-			System.out.println("No se permiten más jugadores, lo siento");
+			System.out.println("Lo siento, no se admiten más jugadores");
+			
 		}
 
 	}
@@ -96,9 +96,9 @@ public class Record {
 	public void showBestPlayer() {
 		ordenarRanking();
 		int i = 0;
-		while (i < this.cont && this.jugadores[0].getPuntuacion() == this.jugadores[i].getPuntuacion()) {
-			System.out.println("El mejor(es) jugador(es) es:" + this.jugadores[i].getNombre() + " con  "
-					+ this.jugadores[i].getPuntuacion() + " puntos");
+		while (i < this.arrayList.size() && this.arrayList.get(0).getPuntuacion() == this.arrayList.get(i).getPuntuacion()) {
+			System.out.println("El mejor(es) jugador(es) es:" + this.arrayList.get(i).getNombre() + " con  "
+					+ this.arrayList.get(i).getPuntuacion() + " puntos");
 			i++;
 		}
 	}
