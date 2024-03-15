@@ -1,5 +1,10 @@
 85 Elena
-14 juan
-100 pepe
-45 alicia
-60 carlos
+14 Juan
+100 Pepe
+45 Alicia
+60 Carlos
+400 Luis
+410 Paula
+400 Laura
+90 Andres
+100 David

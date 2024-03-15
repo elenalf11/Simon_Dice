@@ -1,6 +1,5 @@
 package main;
 
-import java.io.FileNotFoundException;
 
 /**
  * Clase Main

@@ -1,5 +1,6 @@
 package main;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,8 +18,8 @@ public class Record {
 	private Jugador[] jugadores;
 	private int cont;
 	private int ranking;
-	CustomReadFile crf;
-
+	private ArrayList<Jugador> arrayList;
+	private File file;
 
 	/**
 	 * Constructora
@@ -28,6 +29,8 @@ public class Record {
 		this.MAX_JUGADORES = 10;
 		this.jugadores = new Jugador[this.MAX_JUGADORES];
 		this.ranking = 10;
+		this.arrayList = new ArrayList<Jugador>(this.MAX_JUGADORES);
+		this.file = new File("./src/data/top.txt");
 
 	}
 
@@ -60,12 +63,12 @@ public class Record {
 		ordenarRanking();
 		cargarRanking();
 		int i = 0;
-		while(i < this.ranking && i < this.cont) {
+		while (i < this.ranking && i < this.cont) {
 			System.out.println(i + 1 + "- " + this.jugadores[i].getNombre() + " = " + this.jugadores[i].getPuntuacion()
 					+ " puntos");
 			i++;
 		}
-		
+
 	}
 
 	/**
@@ -110,59 +113,51 @@ public class Record {
 		System.out.println("¿A qué jugador quieres buscar?");
 		String buscar = sc.next();
 		int i = 0;
-		while(i < this.cont) {
-			if(buscar == this.jugadores[i].getNombre()) {
-				System.out.println("El jugador " + this.jugadores[i].getNombre() + " tiene una puntuación de " + this.jugadores[i].getPuntuacion() );
+		while (i < this.cont) {
+			if (buscar == this.jugadores[i].getNombre()) {
+				System.out.println("El jugador " + this.jugadores[i].getNombre() + " tiene una puntuación de "
+						+ this.jugadores[i].getPuntuacion());
 			}
 			i++;
 		}
 		System.out.println("Lo siento el jugador que buscabas no existe");
 
 	}
-	
+
 	/**
-	 * void cargarRanking: crea un objeto del CustomReadFile (hay que pasarle el fichero de los jugadores). Hay que
-	 * crear un vector -> Vector <...> miVector = file.LeerJugadores(); Esto devuelve un vector. Tenemos que recorrer
-	 * el vector y coger un jugador del vector y meterlo en mi array de jugadores, hay que rellenar hasta que se acaben los jugadores
-	 * del vector O hasta que nos indice MAX_JUGADORES. También va a lanzar otra excepción, hay que capturarla también
+	 * Metodo que actualiza el ranking segun los jugadores que haya escritos en el
+	 * fichero
 	 */
-	
 	public void cargarRanking() {
-		String file = "./src/data/top.txt";
-		CustomReadFile crf;
-		try {
-			crf = new CustomReadFile(file);
-			ArrayList<Jugador> arrayList = crf.LeerJugadores();
-			for(int i = 0; i < this.MAX_JUGADORES; i++) {
-				arrayList.add(jugadores[i]);
-			}
-			//System.out.println("El ranking actual es " + arrayList);
-		} catch (FileNotFoundException e) {	
+		try (CustomReadFile crf = new CustomReadFile(this.file)) {
+			this.arrayList = crf.LeerJugadores();
+			crf.CloseReadFile();
+		} catch (FileNotFoundException e) {
+			System.out.println("Excepción capturada en el método cargarRanking en la clase Record");
+		} catch (IOException e) {
 			System.out.println("Excepción capturada en el método cargarRanking en la clase Record");
 		}
-		
-		
-		
-		//Llama a LeerJugadores
+
 	}
-	
+
 	/**
-	 * void escribirRanking: va a ir al primer jugador y va coger su puntuación y su nombre y lo va a almacenar para concatenar y crear un fichero txt
-	 * con el resto de posiciones del array. 
+	 * Metodo que almacena la puntuacion y el nombre de los jugadores para
+	 * concatenarlos y crear un fichero
 	 */
-	
+
 	public void escribirRanking() {
-		String file = "./src/data/top.txt";
 		try {
-			CustomWriteFile escribir = new CustomWriteFile(file);
-			for(int i = 0; i < this.cont; i++) {
-				String cadena = this.jugadores[i].getNombre();
-				escribir.write(cadena);
-			}	
+			CustomWriteFile cwf = new CustomWriteFile(this.file);
+			String chain = "";
+			for (int i = 0; i < this.arrayList.size(); i++) {
+				chain += this.arrayList.get(i).getPuntuacion() + " - " + this.arrayList.get(i).getNombre() + "\n";
+			}
+			cwf.WriteFile(chain);
+			cwf.CloseWriteFile();
 		} catch (IOException e) {
 			System.out.println("Excepción capturada en el método escribirRanking en la clase Record");
 		}
-	
+
 	}
 
 }
