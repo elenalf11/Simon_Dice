@@ -4,8 +4,8 @@ En este repositorio nos encontramos con el proyecto del famoso juego <b>Simón D
 <hr>
 <h1 align = "center"> ¿De qué está compuesto el proyecto? 🛠️</h1>
 Este proyecto está compuesto por 3 paquetes: 
-<li> Paquete <i>data</i> </li>
-<li> Paquete <i>files</i> </li>
+<li> Paquete <i>data</i> 📃</li>
+<li> Paquete <i>files</i> 🗂️</li>
 <li> Paquete <i>main</i> </li>
 
 
