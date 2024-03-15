@@ -7,13 +7,3 @@ Paula 200
 Laura 200
 Andres 90
 David 100
-85 - Elena
-100 - Pepe
-45 - Alicia
-60 - Carlos
-200 - Luis
-200 - Paula
-200 - Laura
-90 - Andres
-100 - David
-0 - elena
