@@ -7,5 +7,6 @@ Este proyecto está compuesto por 3 paquetes:
 <li> Paquete <i>data</i> 📃</li>
 <li> Paquete <i>files</i> 🗂️</li>
 <li> Paquete <i>main</i> </li>
+<img src="C:\Users\elena\OneDrive\Imágenes\Capturas de pantalla\Captura de pantalla 2024-03-15 160708.png">
 
 
