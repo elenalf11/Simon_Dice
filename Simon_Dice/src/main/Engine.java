@@ -200,6 +200,7 @@ public class Engine {
 	 * dato
 	 */
 	public void start() {
+		this.rd.cargarRanking();
 		System.out.println("¡Bienvenido a Simón Dice!");
 		System.out.println("¿Cuál es tu nombre? ");
 		String nombre = scanner.next();

@@ -133,11 +133,10 @@ public class Record {
 		try {
 			crf = new CustomReadFile(file);
 			ArrayList<Jugador> arrayList = crf.LeerJugadores();
-			for(int i = 0; i < this.cont; i++) {
+			for(int i = 0; i < this.MAX_JUGADORES; i++) {
 				arrayList.add(jugadores[i]);
 			}
-			arrayList.sort(null);
-			System.out.println("El ranking actual es " + arrayList);
+			//System.out.println("El ranking actual es " + arrayList);
 		} catch (FileNotFoundException e) {	
 			System.out.println("Excepción capturada en el método cargarRanking en la clase Record");
 		}
