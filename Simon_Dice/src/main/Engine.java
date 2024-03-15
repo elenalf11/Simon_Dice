@@ -27,10 +27,10 @@ public class Engine {
 	private tColores[] secuenciaColores;
 	tModo[] modo = new tModo[2];
 	private int puntuacion;
-	String nombre;
+	private String nombre;
 	private int ayuda;
-	Jugador jugador;
-	Record rd;
+	private Jugador jugador; 
+	private Record rd;
 
 	/**
 	 * Constructora
@@ -204,20 +204,20 @@ public class Engine {
 		System.out.println("¡Bienvenido a Simón Dice!");
 		System.out.println("¿Cuál es tu nombre? ");
 		String nombre = scanner.next();
-		jugador.setNombre(nombre);
-		this.rd.addPlayer(jugador);
+		this.jugador.setNombre(nombre);
+		this.rd.addPlayer(this.jugador);
 		this.rd.escribirRanking();
-		this.rd.cargarRanking();
 
 
 		int x = 0;
 		while (x == 0) {
-			System.out.println("Hola " + jugador.getNombre() + " ,¿qué desea hacer?");
+			System.out.println("Hola " + this.jugador.getNombre() + " ,¿qué desea hacer?");
 			menu();
 			int menu = scanner.nextInt();
 			switch (menu) {
 			case 0:
 				System.out.println("Saliendo del sistema...");
+				this.rd.escribirRanking();
 				x = 1;
 				break;
 			case 1:
@@ -227,15 +227,12 @@ public class Engine {
 				play(tModo.Dificil);
 				break;
 			case 3:
-				this.rd.ordenarRanking();
 				this.rd.showRanking();
 				break;
 			case 4:
-				this.rd.ordenarRanking();
 				this.rd.showBestPlayer();
 				break;
 			case 5:
-				this.rd.ordenarRanking();
 				this.rd.buscarJugador();
 				break;
 			default:
@@ -333,7 +330,6 @@ public class Engine {
 				acabar = true;
 			}
 		}
-		this.rd.cargarRanking();
 		return this.puntuacion;
 	}
 

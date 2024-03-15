@@ -43,7 +43,7 @@ public class Record {
 	 * @param jugador es el jugador que tenemos que anadir a la array
 	 */
 	public void addPlayer(Jugador jugador) {
-		if (this.cont < this.MAX_JUGADORES) {
+		if (this.arrayList.size() < this.MAX_JUGADORES) {
 			this.arrayList.add(jugador);
 
 		} else {
@@ -61,7 +61,6 @@ public class Record {
 	 */
 	public void showRanking() {
 		try {
-			cargarRanking();
 			ordenarRanking();
 			for(int i = 0; i < this.ranking; i++) {
 				System.out.println(i + " - " + this.arrayList.get(i).getNombre() + " = " + this.arrayList.get(i).getPuntuacion());

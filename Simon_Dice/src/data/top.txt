@@ -6,7 +6,38 @@ Luis 400
 Paula 400
 Laura 400
 Andres 90
-David 10085 - Elena
+David 100
+85 - Elena
+100 - Pepe
+45 - Alicia
+60 - Carlos
+400 - Luis
+400 - Paula
+400 - Laura
+90 - Andres
+100 - David
+0 - elena
+85 - Elena
+100 - Pepe
+45 - Alicia
+60 - Carlos
+400 - Luis
+400 - Paula
+400 - Laura
+90 - Andres
+100 - David
+0 - elena
+85 - Elena
+100 - Pepe
+45 - Alicia
+60 - Carlos
+400 - Luis
+400 - Paula
+400 - Laura
+90 - Andres
+100 - David
+0 - elena
+85 - Elena
 100 - Pepe
 45 - Alicia
 60 - Carlos
@@ -30,18 +61,12 @@ David 10085 - Elena
 400 - Paula
 400 - Laura
 100 - Pepe
+100 - David
 90 - Andres
 85 - Elena
 60 - Carlos
 45 - Alicia
-400 - Luis
-400 - Paula
-400 - Laura
-100 - Pepe
-90 - Andres
-85 - Elena
-60 - Carlos
-45 - Alicia
+62 - elena
 85 - Elena
 100 - Pepe
 45 - Alicia
@@ -50,6 +75,7 @@ David 10085 - Elena
 400 - Paula
 400 - Laura
 90 - Andres
+100 - David
 0 - elena
 85 - Elena
 100 - Pepe
@@ -59,12 +85,15 @@ David 10085 - Elena
 400 - Paula
 400 - Laura
 90 - Andres
+100 - David
 0 - elena
+85 - Elena
+100 - Pepe
+45 - Alicia
+60 - Carlos
 400 - Luis
 400 - Paula
 400 - Laura
-100 - Pepe
 90 - Andres
-85 - Elena
-60 - Carlos
-45 - Alicia
+100 - David
+0 - elena
