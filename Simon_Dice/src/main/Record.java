@@ -60,9 +60,12 @@ public class Record {
 	 * ocupado del array)
 	 */
 	public void showRanking() {
-		ordenarRanking();
 		cargarRanking();
-		System.out.println("El ranking es " + this.arrayList);
+		ordenarRanking();
+		for(int i = 0; i < this.arrayList.size(); i++) {
+			System.out.println(i + 1 + " - " + this.arrayList.get(i).getNombre() + " = " + this.arrayList.get(i).getPuntuacion());
+		}
+		
 
 	}
 
@@ -73,12 +76,12 @@ public class Record {
 	 * simultaneamente
 	 */
 	public void ordenarRanking() {
-		for (int i = 0; i < this.cont; i++) {
-			for (int j = 0; j < (this.cont - i - 1); j++) {
-				if (this.jugadores[j].getPuntuacion() < this.jugadores[j + 1].getPuntuacion()) {
-					Jugador x = this.jugadores[j + 1];
-					this.jugadores[j + 1] = this.jugadores[j];
-					this.jugadores[j] = x;
+		for(int i = 0; i < this.arrayList.size(); i++) {
+			for (int j = 0; j < this.arrayList.size() - i - 1; j++) {
+				if(this.arrayList.get(j).getPuntuacion() < this.arrayList.get(j + 1).getPuntuacion()) {
+					Jugador x = this.arrayList.get(j);
+					this.arrayList.set(j, this.arrayList.get(j + 1));
+					this.arrayList.set(j + 1, x);
 				}
 			}
 		}
