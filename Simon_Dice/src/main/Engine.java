@@ -205,7 +205,9 @@ public class Engine {
 		System.out.println("¿Cuál es tu nombre? ");
 		String nombre = scanner.next();
 		jugador.setNombre(nombre);
-		rd.addPlayer(jugador);
+		this.rd.addPlayer(jugador);
+		this.rd.escribirRanking();
+		this.rd.cargarRanking();
 
 
 		int x = 0;
@@ -331,6 +333,7 @@ public class Engine {
 				acabar = true;
 			}
 		}
+		this.rd.cargarRanking();
 		return this.puntuacion;
 	}
 
