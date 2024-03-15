@@ -62,12 +62,7 @@ public class Record {
 	public void showRanking() {
 		ordenarRanking();
 		cargarRanking();
-		int i = 0;
-		while (i < this.ranking && i < this.cont) {
-			System.out.println(i + 1 + "- " + this.jugadores[i].getNombre() + " = " + this.jugadores[i].getPuntuacion()
-					+ " puntos");
-			i++;
-		}
+		System.out.println("El ranking es " + this.arrayList);
 
 	}
 
@@ -78,15 +73,16 @@ public class Record {
 	 * simultaneamente
 	 */
 	public void ordenarRanking() {
-		for (int i = 0; i < this.cont; i++) {
-			for (int j = 0; j < (this.cont - i - 1); j++) {
-				if (this.jugadores[j].getPuntuacion() < this.jugadores[j + 1].getPuntuacion()) {
-					Jugador x = this.jugadores[j + 1];
-					this.jugadores[j + 1] = this.jugadores[j];
-					this.jugadores[j] = x;
-				}
-			}
-		}
+		this.arrayList.sort(null);
+		//for (int i = 0; i < this.cont; i++) {
+			//for (int j = 0; j < (this.cont - i - 1); j++) {
+				//if (this.jugadores[j].getPuntuacion() < this.jugadores[j + 1].getPuntuacion()) {
+					//Jugador x = this.jugadores[j + 1];
+					//this.jugadores[j + 1] = this.jugadores[j];
+					//this.jugadores[j] = x;
+				//}
+			//}
+		//}
 	}
 
 	/**
@@ -129,6 +125,7 @@ public class Record {
 	 * fichero
 	 */
 	public void cargarRanking() {
+		escribirRanking();
 		try (CustomReadFile crf = new CustomReadFile(this.file)) {
 			this.arrayList = crf.LeerJugadores();
 			crf.CloseReadFile();
@@ -147,7 +144,7 @@ public class Record {
 
 	public void escribirRanking() {
 		try {
-			CustomWriteFile cwf = new CustomWriteFile(this.file);
+			CustomWriteFile cwf = new CustomWriteFile(this.file, true);
 			String chain = "";
 			for (int i = 0; i < this.arrayList.size(); i++) {
 				chain += this.arrayList.get(i).getPuntuacion() + " - " + this.arrayList.get(i).getNombre() + "\n";

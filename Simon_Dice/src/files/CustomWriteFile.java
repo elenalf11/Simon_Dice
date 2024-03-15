@@ -18,8 +18,8 @@ public class CustomWriteFile extends FileWriter implements ICustomWriteFile {
 	 * @param file es el fichero que va a utilizar para escribir en el
 	 * @throws IOException es la excepcion que puede lanzar el programa
 	 */
-	public CustomWriteFile(File file) throws IOException {
-		super(file);
+	public CustomWriteFile(File file, Boolean append) throws IOException {
+		super(file, true);
 	}
 
 	/**
