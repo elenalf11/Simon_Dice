@@ -26,7 +26,7 @@ public class CustomReadFile extends FileReader implements ICustomReadFile {
 		super(file);
 	}
 
-	private ArrayList<Jugador> arrayList = new ArrayList<>();
+	private ArrayList<Jugador> arrayList = new ArrayList<Jugador>();
 	private Scanner sc = new Scanner(this);
 
 	/**
@@ -57,9 +57,8 @@ public class CustomReadFile extends FileReader implements ICustomReadFile {
 				String palabra = this.sc.nextLine();
 				String[] division = palabra.split(" ", 2);
 				// parseInt convierte una cadena de texto en un numero entero
-				int puntos = Integer.parseInt(division[2]);
-				String nombre = division[1];
-				Jugador player = new Jugador(nombre, puntos);
+				int puntos = Integer.parseInt(division[1]);
+				Jugador player = new Jugador(division[0], puntos);
 				this.arrayList.add(player);
 			}
 		} catch (Exception e) {

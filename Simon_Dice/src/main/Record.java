@@ -73,16 +73,15 @@ public class Record {
 	 * simultaneamente
 	 */
 	public void ordenarRanking() {
-		this.arrayList.sort(null);
-		//for (int i = 0; i < this.cont; i++) {
-			//for (int j = 0; j < (this.cont - i - 1); j++) {
-				//if (this.jugadores[j].getPuntuacion() < this.jugadores[j + 1].getPuntuacion()) {
-					//Jugador x = this.jugadores[j + 1];
-					//this.jugadores[j + 1] = this.jugadores[j];
-					//this.jugadores[j] = x;
-				//}
-			//}
-		//}
+		for (int i = 0; i < this.cont; i++) {
+			for (int j = 0; j < (this.cont - i - 1); j++) {
+				if (this.jugadores[j].getPuntuacion() < this.jugadores[j + 1].getPuntuacion()) {
+					Jugador x = this.jugadores[j + 1];
+					this.jugadores[j + 1] = this.jugadores[j];
+					this.jugadores[j] = x;
+				}
+			}
+		}
 	}
 
 	/**

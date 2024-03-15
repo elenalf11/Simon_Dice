@@ -20,7 +20,7 @@ public class Jugador {
 	 */
 	public Jugador(String nombre, int puntuacion) {
 		this.nombre = nombre;
-		this.puntuacion = 0;
+		this.puntuacion = puntuacion;
 
 	}
 
