@@ -51,7 +51,7 @@ public class CustomReadFile extends FileReader implements ICustomReadFile {
 	 * @return Retorna un arraylist de tipo Jugador
 	 */
 	@Override
-	public ArrayList LeerJugadores() {
+	public ArrayList<Jugador> LeerJugadores() {
 		try {
 			while (this.sc.hasNextLine()) {
 				String palabra = this.sc.nextLine();

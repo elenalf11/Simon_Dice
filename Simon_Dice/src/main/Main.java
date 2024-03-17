@@ -14,5 +14,10 @@ public class Main {
 		eng.start();
 
 	}
-
+	/**
+	 * Arreglar que se dupliquen los jugadores en el top.txt
+	 * Quitar el guión 
+	 * 
+	 **/
 }
+

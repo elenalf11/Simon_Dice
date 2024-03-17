@@ -217,6 +217,7 @@ public class Engine {
 			switch (menu) {
 			case 0:
 				System.out.println("Saliendo del sistema...");
+				this.rd.ordenarRanking();
 				this.rd.escribirRanking();
 				x = 1;
 				break;

@@ -131,7 +131,6 @@ public class Record {
 	 * fichero
 	 */
 	public void cargarRanking() {
-		escribirRanking();
 		try (CustomReadFile crf = new CustomReadFile(this.file)) {
 			this.arrayList = crf.LeerJugadores();
 			crf.CloseReadFile();
@@ -140,7 +139,6 @@ public class Record {
 		} catch (IOException e) {
 			System.out.println("Excepción capturada en el método cargarRanking en la clase Record");
 		}
-
 	}
 
 	/**
@@ -153,10 +151,13 @@ public class Record {
 			CustomWriteFile cwf = new CustomWriteFile(this.file, true);
 			String chain = "";
 			for (int i = 0; i < this.arrayList.size(); i++) {
-				chain += this.arrayList.get(i).getPuntuacion() + " - " + this.arrayList.get(i).getNombre() + "\n";
+				chain += this.arrayList.get(i).getNombre() + this.arrayList.get(i).getPuntuacion() + "\n";
 			}
 			cwf.WriteFile(chain);
 			cwf.CloseWriteFile();
+			
+			
+			
 		} catch (IOException e) {
 			System.out.println("Excepción capturada en el método escribirRanking en la clase Record");
 		}
