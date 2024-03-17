@@ -206,7 +206,6 @@ public class Engine {
 		String nombre = scanner.next();
 		this.jugador.setNombre(nombre);
 		this.rd.addPlayer(this.jugador);
-		this.rd.escribirRanking();
 
 
 		int x = 0;

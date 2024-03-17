@@ -15,7 +15,6 @@ import files.CustomWriteFile;
  */
 public class Record {
 	private final int MAX_JUGADORES;
-	private Jugador[] jugadores;
 	private int cont;
 	private int ranking;
 	private ArrayList<Jugador> arrayList;
@@ -27,7 +26,6 @@ public class Record {
 	public Record() {
 		this.cont = 0;
 		this.MAX_JUGADORES = 10;
-		this.jugadores = new Jugador[this.MAX_JUGADORES];
 		this.ranking = 10;
 		this.arrayList = new ArrayList<Jugador>(this.MAX_JUGADORES);
 		this.file = new File("./src/data/top.txt");
@@ -43,13 +41,7 @@ public class Record {
 	 * @param jugador es el jugador que tenemos que anadir a la array
 	 */
 	public void addPlayer(Jugador jugador) {
-		if (this.arrayList.size() < this.MAX_JUGADORES) {
-			this.arrayList.add(jugador);
-
-		} else {
-			System.out.println("Lo siento, no se admiten más jugadores");
-			
-		}
+		this.arrayList.add(jugador);
 
 	}
 
@@ -148,10 +140,10 @@ public class Record {
 
 	public void escribirRanking() {
 		try {
-			CustomWriteFile cwf = new CustomWriteFile(this.file, true);
+			CustomWriteFile cwf = new CustomWriteFile(this.file);
 			String chain = "";
 			for (int i = 0; i < this.arrayList.size(); i++) {
-				chain += this.arrayList.get(i).getNombre() + this.arrayList.get(i).getPuntuacion() + "\n";
+				chain += this.arrayList.get(i).getNombre() + " " + this.arrayList.get(i).getPuntuacion() + "\n";
 			}
 			cwf.WriteFile(chain);
 			cwf.CloseWriteFile();

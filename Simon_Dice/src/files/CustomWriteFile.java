@@ -19,8 +19,8 @@ public class CustomWriteFile extends FileWriter implements ICustomWriteFile {
 	 * @param append es una opcion que permite que el fichero no se borre en la ejecucion del programa
 	 * @throws IOException es la excepcion que puede lanzar el programa
 	 */
-	public CustomWriteFile(File file, Boolean append) throws IOException {
-		super(file, true);
+	public CustomWriteFile(File file) throws IOException {
+		super(file);
 	}
 
 	/**

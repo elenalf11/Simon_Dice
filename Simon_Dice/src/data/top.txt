@@ -1,9 +1,11 @@
-Elena 85
-Pepe 100
-Alicia 45
-Carlos 60
 Luis 200
 Paula 200
 Laura 200
-Andres 90
+Pepe 100
 David 100
+Andres 90
+Elena 85
+pepaaaaa 68
+Carlos 60
+Alicia 45
+elena 32
