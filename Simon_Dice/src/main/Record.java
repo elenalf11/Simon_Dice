@@ -15,7 +15,6 @@ import files.CustomWriteFile;
  */
 public class Record {
 	private final int MAX_JUGADORES;
-	private int cont;
 	private int ranking;
 	private ArrayList<Jugador> arrayList;
 	private File file;
@@ -24,7 +23,6 @@ public class Record {
 	 * Constructora
 	 */
 	public Record() {
-		this.cont = 0;
 		this.MAX_JUGADORES = 10;
 		this.ranking = 10;
 		this.arrayList = new ArrayList<Jugador>(this.MAX_JUGADORES);
@@ -107,7 +105,7 @@ public class Record {
 		System.out.println("¿A qué jugador quieres buscar?");
 		String buscar = sc.next();
 		int i = 0;
-		while (i < this.cont) {
+		while (i < this.arrayList.size()) {
 			if (buscar == this.arrayList.get(i).getNombre()) {
 				System.out.println("El jugador " + this.arrayList.get(i).getNombre() + " tiene una puntuación de "
 						+ this.arrayList.get(i).getPuntuacion());
